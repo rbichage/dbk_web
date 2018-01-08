@@ -123,7 +123,6 @@ MEDIA_PATH = [
     os.path.join(BASE_DIR, 'media')
 ]
 
-
 REST_FRAMEWORK = {
     # use standard django permissions to allow read-only access to  authenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
@@ -131,3 +130,4 @@ REST_FRAMEWORK = {
     ]
 
 }
+LOGIN_REDIRECT_URL = '/accounts/'

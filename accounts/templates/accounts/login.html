@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title> Login</title>
+{% endblock %}
+{% block body %}
+    {% include 'layouts/navbar.html' %}
+<div class="jumbotron-2">
+  <div class="container">
+        <h1> Welcome</h1>
+        <p>Login to continue</p>
+    </div>
+
+    <div class="container-fluid">
+         <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn-outline-info" type="submit" style="border-radius:10px">Login</button>
+    </form>
+
+
+    </div>
+
+
+</div>
+
+    {% include 'layouts/footer.html' %}
+{% endblock %}

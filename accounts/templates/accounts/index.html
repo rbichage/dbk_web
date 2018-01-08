@@ -4,13 +4,20 @@
 {% endblock %}
 
 {% block body %}
-    <nav class="navbar navbar-inverse" style="background:indianred ">
+    <nav class="navbar navbar-default navbar-fixed-top " style="background:indianred ">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" style="color: white">DonateBloodKenya</a>
+      <a class="navbar-brand"  style="color: white">DonateBloodKenya</a>
     </div>
-    <button class="btn btn-outline-info" style="color: white" href="#">Contact Us</button>
+      <div class="navbar navbar-right">
+{#      <ul class=" nav navbar-nav" >#}
+{#          <li class="nav-item"><a class="nav-link" href="#">login</a></li>#}
+{#          <li class="nav-item"><a class="nav-link" href="#">sign up</a></li>#}
+{#      </ul>#}
+            <button class="btn btn-outline-info" style="color: white" href="#"><a href="/accounts/login">Login</a> </button>
+            <button class="btn btn-outline-info" style="color: white; margin-left: 5px; nav-right: auto" href="#"><a href="#">Sign Up</a> </button>
   </div>
+      </div>
 </nav>
 
 {#    <nav class="navbar navbar-default;" style="background-color: indianred">#}
@@ -30,22 +37,7 @@
 {##}
 {#    </div>#}
 </nav>
-<div class="jumbotron-2">
-
-    <div class="container" >
-
-        <h1 class="text-capitalize; text-capitalize"> Welcome to Donate Blood Kenya. Be the change you wish to see! </h1>
-        <p > Donate Blood Kenya is an Android Application that will act as a portal for making blood donation appointments
-        to hospitals near your location. <br>Check out the code <a href="https://github.com/rbichage96/dbk_android" target="_blank">Here</a>
-        </p>
-
-
-    </div>
-
-
-
-
-</div>
+{% include 'layouts/jumbotron.html' %}
 
 {% include 'layouts/footer.html' %}
 {%  endblock%}
