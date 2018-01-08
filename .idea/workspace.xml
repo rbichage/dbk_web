@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e21d423-03d0-43e7-a124-506b8b1dde49" name="Default" comment="minor UI changes">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="8e21d423-03d0-43e7-a124-506b8b1dde49" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/accounts/templates/accounts/index.html" afterPath="$PROJECT_DIR$/accounts/templates/accounts/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -86,10 +85,12 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="38" column="131" lean-forward="false" selection-start-line="38" selection-start-column="131" selection-end-line="38" selection-end-column="131" />
+            <state relative-caret-position="165">
+              <caret line="11" column="69" lean-forward="false" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
               <folding>
                 <element signature="e#158#187#0#HTML" expanded="true" />
+                <element signature="e#292#312#0#HTML" expanded="true" />
+                <element signature="e#386#406#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -379,6 +380,14 @@
       <option name="presentableId" value="Default" />
       <updated>1515067912262</updated>
     </task>
+    <task id="LOCAL-00001" summary="minor UI changes">
+      <created>1515418397550</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1515418397550</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -845,10 +854,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/accounts/templates/accounts/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="38" column="131" lean-forward="false" selection-start-line="38" selection-start-column="131" selection-end-line="38" selection-end-column="131" />
+        <state relative-caret-position="165">
+          <caret line="11" column="69" lean-forward="false" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
           <folding>
             <element signature="e#158#187#0#HTML" expanded="true" />
+            <element signature="e#292#312#0#HTML" expanded="true" />
+            <element signature="e#386#406#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
