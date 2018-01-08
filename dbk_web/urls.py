@@ -16,8 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from accounts import views
 
 urlpatterns = [
+    url(r'^api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
-    url(r'^accounts/', include('accounts.urls'))
+    url(r'^accounts/', include('accounts.urls')),
+    url(r'^$', views.home, name='home')
+
 ]

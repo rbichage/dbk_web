@@ -7,11 +7,11 @@ from accounts.models import Donor, Hospital, County
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'accounts/index.html')
+
+
 def donor_list(request):
     data = serializers.serialize('json', Donor.objects.all())
     data = serializers.serialize('json', data)
     return HttpResponse(data, content_type='application/json')
-
-
-def home(request):
-    return HttpResponse("whats up!")
