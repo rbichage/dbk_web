@@ -4,40 +4,70 @@
 {% endblock %}
 
 {% block body %}
-    <nav class="navbar navbar-default navbar-fixed-top " style="background:indianred ">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand"  style="color: white">DonateBloodKenya</a>
-    </div>
-      <div class="navbar navbar-right">
-{#      <ul class=" nav navbar-nav" >#}
-{#          <li class="nav-item"><a class="nav-link" href="#">login</a></li>#}
-{#          <li class="nav-item"><a class="nav-link" href="#">sign up</a></li>#}
-{#      </ul>#}
-            <button class="btn btn-outline-info" style="color: white" href="#"><a href="/accounts/login">Login</a> </button>
-            <button class="btn btn-outline-info" style="color: white; margin-left: 5px; nav-right: auto" href="#"><a href="#">Sign Up</a> </button>
+<body class="body-2">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded" style="position: fixed; width: 100%; z-index: 9999;background:rgba(0,0,0,0.22); color: white; margin-bottom: 20px ">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+         <a class="navbar-brand" style="font-weight: bold; color: black; font-family:MathJax_Caligraphic,sans-serif">Donate Blood Kenya</a>
+      <li class="nav-item active">
+
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 5px" >Sign Up</button>
+      <button class="btn btn-outline-success my-2 my-sm-0">Login</button>
+    </form>
   </div>
-      </div>
 </nav>
-
-{#    <nav class="navbar navbar-default;" style="background-color: indianred">#}
-{#    <div class="container-fluid">#}
-{#        <div class="navbar-header">#}
-{##}
-{#            <div class="navbar-brand" style="color: white"> Donatebloodkenya</div>#}
-{##}
-{#            <div class="collapse navbar collapse" ID="navBarSupportedContent">#}
-{#                <ul class="nav navbar-nav navbar-right">#}
-{#                    <li class="nav-item ">#}
-{#                        <button class="btn btn-outline-success"  href="#"> Contact us</button>#}
-{#                    </li>#}
-{#                </ul>#}
-{#            </div>#}
-{#        </div>#}
-{##}
+{#    <nav class="navbar navbar-default navbar-fixed-top " style="background:darkred; z-index: 999;position: fixed; width: 100%">#}
+{#  <div class="container-fluid">#}
+{#    <div class="navbar-header">#}
+{#      <a class="navbar-brand"  style="color: white">DonateBloodKenya</a>#}
 {#    </div>#}
-</nav>
-{% include 'layouts/jumbotron.html' %}
+{#      <div class="navbar navbar-right">#}
+{##}
+{#            <button class="btn btn-outline-info" style="color: white" href="#"><a href="/accounts/login">Login</a> </button>#}
+{#            <button class="btn btn-outline-info" style="color: white; margin-left: 5px; nav-right: auto" href="#"><a href="#">Sign Up</a> </button>#}
+{#  </div>#}
+{#      </div>#}
+{#</nav>#}
 
-{% include 'layouts/footer.html' %}
+
+{% include 'layouts/jumbotron.html' %}
+    <div class="container " style=" margin-bottom: 100px; margin-top: 50px">
+      <!-- Example row of columns -->
+
+         <div class="row" style="margin-top: 20px; margin-bottom: 20px">
+
+        <hr>
+        <footer class="footer-basic-centered fixed-bottom text-center" style="background: rgba(0,0,0,0.52); margin-top: 80px;position:fixed; width: 100%; margin-bottom: 0">
+
+			<p class="footer-company-motto" style="color: white;">Motto Will Go Here </p>
+
+			<p class="footer-links">
+				<a href="#">Home</a>
+                .
+				<a href="#">About</a>
+                .
+				<a href="#">Contact Us</a>
+                .
+				<a href="#">Prospects</a>
+                .
+				<a href="#">Faq</a>
+
+			</p>
+
+			<p class="footer-company-name" style="color: white">DonateBloodKenya &copy; 2018</p>
+
+		</footer>
+    </div>
+
+
+
+
+</body>
 {%  endblock%}
