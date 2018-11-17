@@ -1,10 +1,39 @@
+from datetime import date
+
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models
 
-
 # Create your models here.
+from django.utils.datetime_safe import datetime
+
+
+def upload_location(instance, filename):
+    return "%s/%s" % (instance.id, filename)
+
+
+class News(models.Model):
+    title = models.CharField(max_length=100, help_text='One hundred character!')
+    description = models.TextField(null=True)
+    image_url = models.ImageField(
+        upload_to=upload_location,
+        null=True, blank=True,
+        width_field="width_field",
+        height_field="height_field")
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "News"
+
+    def __str__(self):
+        return self.title
+
+    def body(self):
+        return self.description
+
+    body.allow_tags = True
 
 
 class County(models.Model):
@@ -45,17 +74,27 @@ class Donor(auth.models.User):
         ('O-', 'O-'),
 
     )
-    age = models.IntegerField(default=18, validators=[MinValueValidator(18),
-                                                      MaxValueValidator(55)])
+    birthdate = models.DateField(null=True)
 
-    blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=4, default='choose')
-    county_name = models.ForeignKey(County, on_delete=models.CASCADE)
-    gender = models.IntegerField(choices=GENDER_CHOICES, default=NOT_SET)
+    @property
+    def age(self):
+        if self.birthdate is None:
+            return None
+        return int((datetime.now().date() - self.birthdate).days / 365.25)
+
+    blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=4, default='choose', null=True, blank=True)
+    date_donated = models.DateField(null=True, blank=True)
+    county_name = models.ForeignKey(County, on_delete=models.CASCADE, null=True, blank=True)
+    gender = models.IntegerField(choices=GENDER_CHOICES, default=NOT_SET, null=True, blank=True)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message=
-                                 "Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed."
+                                 "Phone number must be entered in the format: '+254xxxxxxx'. Up to 15 digits allowed."
                                  )
     phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
+    image_url = models.ImageField(
+        upload_to=upload_location, null=True, blank=True)
+    updated_at = models.DateField(null=True, blank=True, auto_now=False)
+    created_at = models.DateField(null=True, auto_now=False)
 
     def __str__(self):
         return self.first_name
@@ -67,6 +106,7 @@ class Donor(auth.models.User):
 class Hospital(models.Model):
     hospital_name = models.CharField(max_length=100)
     county_name = models.ForeignKey(County, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=15, null=True)
 
     def __str__(self):
         return self.hospital_name
@@ -84,3 +124,19 @@ class Event(models.Model):
 
     class Meta:
         verbose_name_plural = 'Events'
+
+
+class Appointment(models.Model):
+    first_name = models.CharField(max_length=100, null=True)
+    last_name = models.CharField(max_length=100, null=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                 message=
+                                 "Phone number must be entered in the format: '+254712345678'. Up to 15 digits "
+                                 "allowed. "
+                                 )
+    phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
+    county_name = models.ForeignKey(County, on_delete=models.CASCADE, null=True)
+    schedule_date = models.DateTimeField(auto_now=False, null=True)
+
+    def __str__(self):
+        return self.first_name

@@ -24,12 +24,23 @@ SECRET_KEY = '47w-^$#&hqzq!1zy878@r$1v9_7bbrc+q1o3u2^e_=v7)mop9v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.2.2',
+                 '127.0.0.1',
+                 '128.10.1.131',
+                 ]
 
 # Application definition
 
 INSTALLED_APPS = [
+    # 'django_admin_generator',
     'rest_framework',
+    'rest_framework.authtoken',
+    'rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.socialaccount',
+    'allauth.account',
+    'rest_auth.registration',
     'accounts',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,7 +139,7 @@ MEDIA_PATH = [
 REST_FRAMEWORK = {
     # use standard django permissions to allow read-only access to  authenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+        'rest_framework.permissions.IsAuthenticated',
     ]
 
 }

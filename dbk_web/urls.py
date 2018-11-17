@@ -15,13 +15,18 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.auth.views import login
 from django.urls import path, include
 from accounts import views
 
 
 urlpatterns = [
-    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^auth/', include('djoser.urls')),
+    url(r'^auth/', include('djoser.urls.authtoken')),
+    # url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^rest-auth/', include('rest_auth.urls')),
+    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
+    url(r'^api/v1/', include('djoser.urls')),
+    url(r'^api/v1/', include('api_dbk.urls')),
     path('admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^$', views.home, name='home'),
