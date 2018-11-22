@@ -1,0 +1,51 @@
+{% extends 'admin/base_site.html' %}
+
+{% load static %}
+
+{% block blockbots %}
+  {{ block.super }}
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{% static 'admin/css/responsive.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/responsive_rtl.css" %}" />
+{% endblock %}
+    {% block head %}
+            <link rel="icon" href="{% static 'img/ic_launcher.png' %}"/>
+    {% endblock %}
+
+{% block title %}
+    DBK Admin
+{% endblock %}
+
+
+
+{% block extrastyle %}
+    <style>
+    #header{ background-color: #400004;}
+
+    </style>
+{% endblock %}
+
+
+{% block branding %}
+    <h1><a href="{% url 'admin:index' %}">Donate Blood Kenya Admin</a></h1>
+    {#    <nav class="navbar navbar-light bg-light">#}
+{#        <a class="navbar-brand" href="/admin">#}
+{#            <img src="{% static 'img/ic_launcher.png' %}" width="50" height="50" class="d-inline-block align-top" alt="">#}
+{#        </a>#}
+{#    </nav>#}
+{#    <div class="navbar-brand" style="color: darkred">#}
+{#        <h1>Donate Blood Kenya</h1>#}
+{#        <img class="img-responsive" src="{% static 'img/ic_launcher.png' %}" />#}
+{#    </div>#}
+
+    {% block nav-global %}
+
+    {% endblock %}
+
+
+{% endblock %}
+
+{% block body %}
+
+
+{% endblock %}

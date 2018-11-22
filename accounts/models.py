@@ -91,10 +91,7 @@ class Donor(auth.models.User):
                                  "Phone number must be entered in the format: '+254xxxxxxx'. Up to 15 digits allowed."
                                  )
     phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
-    image_url = models.ImageField(
-        upload_to=upload_location, null=True, blank=True)
-    updated_at = models.DateField(null=True, blank=True, auto_now=False)
-    created_at = models.DateField(null=True, auto_now=False)
+    image = models.ImageField(upload_to='profile_photo', blank=True)
 
     def __str__(self):
         return self.first_name

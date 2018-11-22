@@ -27,6 +27,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['10.0.2.2',
                  '127.0.0.1',
                  '128.10.1.131',
+                 '10.42.0.1',
                  ]
 
 # Application definition
@@ -128,7 +129,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_DIR = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'accounts/media')
 ]
 
 MEDIA_URL = '/media/'
@@ -140,7 +141,9 @@ REST_FRAMEWORK = {
     # use standard django permissions to allow read-only access to  authenticated users.
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+
+
 
 }
 LOGIN_REDIRECT_URL = '/accounts/'
