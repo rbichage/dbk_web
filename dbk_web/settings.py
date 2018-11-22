@@ -33,7 +33,6 @@ ALLOWED_HOSTS = ['10.0.2.2',
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django_admin_generator',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -128,6 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = [
+    os.path.join(BASE_DIR, 'static')
+]
 STATIC_DIR = [
     os.path.join(BASE_DIR, 'accounts/media')
 ]
@@ -147,3 +149,5 @@ REST_FRAMEWORK = {
 
 }
 LOGIN_REDIRECT_URL = '/accounts/'
+
+
