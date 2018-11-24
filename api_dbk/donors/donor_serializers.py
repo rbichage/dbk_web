@@ -56,19 +56,21 @@ class DonorProfileSerializer(serializers.ModelSerializer):
 class SignUpSerializer(serializers.ModelSerializer):
     # county = CountySerializer(required=False)
     # county_name = serializers.CharField(max_length=50, required= False, allow_null=True)
-    email = serializers.EmailField(required=True, allow_null=False)
+    email = serializers.EmailField(required=True, allow_null=False, validators=[
+        UniqueValidator(queryset=Donor.objects.all(), message="email  already in use", )])
 
     username = serializers.CharField(max_length=50, required=True, allow_null=False, validators=[
         UniqueValidator(queryset=Donor.objects.all(), message="username  already in use", )])
     first_name = serializers.CharField(max_length=50, required=True, allow_null=False)
     last_name = serializers.CharField(max_length=50, required=True, allow_null=False)
+    birthdate = serializers.CharField(max_length=20, required=True, allow_null=False)
 
     class Meta:
         model = Donor
         fields = ('id', 'username', 'first_name', 'last_name',
                   'password', 'email', 'birthdate', 'gender',
 
-                  'first_name', 'last_name', 'gender')
+                  'first_name', 'last_name', 'gender', 'birthdate')
         extra_kwargs = {'password': {'write_only': True}}
         read_only_fields = ('updated_at', 'created_at')
 
@@ -78,6 +80,7 @@ class SignUpSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
+            birthdate=validated_data['birthdate']
         )
         user.set_password(validated_data['password'])
         user.save()
@@ -88,6 +91,7 @@ class SignUpSerializer(serializers.ModelSerializer):
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.email = validated_data.get('email', instance.email)
+        instance.birthdate = validated_data.get('birthdate', instance.birthdate)
         instance.set_password(validated_data.get('password'))
 
         instance.save()
@@ -113,4 +117,3 @@ class DonorLoginSerializer(DonorSerializer):
         payload = jwt_payload_handler(obj)
         token = jwt_encode_handler(payload)
         return token
-

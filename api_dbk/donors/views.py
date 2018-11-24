@@ -34,8 +34,8 @@ class SignUpView(APIView):
             else:
                 response = Response({
                     "error": serializer.errors,
-                    "error_": serializer.error_messages,
-                    "data": request.data
+                    # "error_": serializer.error_messages,
+                    # "data": request.data
                 }, status=406)
 
                 if Donor.objects.filter(username=request.data.get("username")).exists():
@@ -71,17 +71,6 @@ def login(request):
     serializer = sz.DonorLoginSerializer(user)
     return Response(serializer.data)
 
-
-
-
-
-
-
-
-
-
-
-
     # try:
     #
     #     username = request.data.get("username")
@@ -110,30 +99,3 @@ def login(request):
     #     return response
     # except Exception as e:
     #     return Response({"success": False, "message": str(e)})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

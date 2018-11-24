@@ -82,7 +82,7 @@ class Donor(auth.models.User):
             return None
         return int((datetime.now().date() - self.birthdate).days / 365.25)
 
-    blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=4, default='choose', null=True, blank=True)
+    blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=40, default='choose', null=True, blank=True)
     date_donated = models.DateField(null=True, blank=True)
     county_name = models.ForeignKey(County, on_delete=models.CASCADE, null=True, blank=True)
     gender = models.IntegerField(choices=GENDER_CHOICES, default=NOT_SET, null=True, blank=True)
