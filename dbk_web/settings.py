@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['10.0.2.2',
 # Application definition
 
 INSTALLED_APPS = [
+    'django_heroku',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
