@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, timezone
 
 from django.contrib import auth
 from django.contrib.auth.models import User

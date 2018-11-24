@@ -1,93 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e21d423-03d0-43e7-a124-506b8b1dde49" name="Default" comment="more changes">
-      <change afterPath="$PROJECT_DIR$/static/css/fa/fonts/FontAwesome.otf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/fa/fonts/fontawesome-webfont.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/fa/fonts/fontawesome-webfont.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/fa/fonts/fontawesome-webfont.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/fa/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap-grid.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap-grid.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap-grid.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap-grid.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap-reboot.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap-reboot.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap-reboot.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap-reboot.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/dbk.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/demo.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/HELP-US-OUT.txt" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/HELP-US-OUT.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/css/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/css/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/css/font-awesome.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/css/font-awesome.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/css/font-awesome.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/css/font-awesome.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/fonts/fontawesome-webfont.svg" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/fonts/fontawesome-webfont.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/animated.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/animated.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/bordered-pulled.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/bordered-pulled.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/core.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/core.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/fixed-width.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/fixed-width.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/font-awesome.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/font-awesome.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/icons.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/icons.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/larger.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/larger.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/list.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/list.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/mixins.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/mixins.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/path.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/path.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/rotated-flipped.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/rotated-flipped.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/screen-reader.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/screen-reader.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/stacked.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/stacked.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/less/variables.less" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/less/variables.less" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_animated.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_animated.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_bordered-pulled.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_bordered-pulled.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_core.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_core.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_fixed-width.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_fixed-width.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_icons.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_icons.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_larger.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_larger.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_list.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_list.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_mixins.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_mixins.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_path.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_path.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_rotated-flipped.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_rotated-flipped.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_screen-reader.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_screen-reader.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_stacked.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_stacked.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/fa/scss/font-awesome.scss" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/fa/scss/font-awesome.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/footer-basic-centered.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/footer-distributed-with-address-and-phones.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/footer-distributed-with-contact-form.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/footer-distributed-with-search.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/footer-distributed.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/main.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/css/mzito.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/img/donation.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/img/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/img/jumbotron.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/jquery-3.2.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/bootstrap.bundle.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/bootstrap.bundle.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/bootstrap.bundle.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/bootstrap.bundle.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/bootstrap.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/bootstrap.min.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/jquery-3.2.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/static/js/mzito.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/accounts/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_dbk/donors/donor_serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_dbk/donors/donor_serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_dbk/donors/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_dbk/donors/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbk_web/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbk_web/settings.py" afterDir="false" />
-    </list>
+    <list default="true" id="8e21d423-03d0-43e7-a124-506b8b1dde49" name="Default" comment="more changes" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,16 +89,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dbk_web/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2085">
+            <state relative-caret-position="288">
               <caret line="139" selection-start-line="139" selection-end-line="139" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api_dbk/donors/donor_serializers.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="113">
@@ -319,10 +233,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1" />
-    <option name="y" value="26" />
-    <option name="width" value="1602" />
-    <option name="height" value="875" />
+    <option name="x" value="710" />
+    <option name="y" value="164" />
+    <option name="width" value="1594" />
+    <option name="height" value="874" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -546,7 +460,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="26" width="1602" height="875" extended-state="6" />
+    <frame x="710" y="164" width="1594" height="874" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.19833119" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -562,7 +477,7 @@
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4935815" visible="true" weight="0.4867374" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.4935815" visible="true" weight="0.4873838" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -865,13 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dbk_web/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2085">
-          <caret line="139" selection-start-line="139" selection-end-line="139" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="915">
@@ -903,6 +811,13 @@
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dbk_web/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="139" selection-start-line="139" selection-end-line="139" />
         </state>
       </provider>
     </entry>
