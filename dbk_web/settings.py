@@ -28,6 +28,7 @@ ALLOWED_HOSTS = ['10.0.2.2',
                  '127.0.0.1',
                  '128.10.1.131',
                  '10.42.0.1',
+                 'dbke.herokuapp.com',
                  ]
 
 # Application definition
