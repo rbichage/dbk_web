@@ -1,0 +1,22 @@
+{% extends 'dbk/base.html' %}
+
+{% block head %}
+ <title>Login</title>
+
+{% endblock %}
+
+
+    {% block content %}
+        <div class="container">
+            <h1>You can login here</h1>
+            <p></p>
+            <h2>login</h2>
+            <form method="post">
+                {% csrf_token %}
+
+                {{ form.as_p }}
+                <button type="submit">login</button>
+            </form>
+        </div>
+
+    {% endblock %}

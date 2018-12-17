@@ -1,0 +1,5 @@
+#header{ background-color: #157c53; border-bottom: solid 1px #999; }
+
+#branding h1{ color: #fff; }
+.module h2, .module caption, .inline-group h2 { background:#157c53 url(/admin_media/img/admin/nav-bg.gif) bottom left repeat-x; color: #ffffff; }
+a.section:link, a.section:visited { color: #fff; }

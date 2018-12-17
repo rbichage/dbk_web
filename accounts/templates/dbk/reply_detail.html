@@ -1,0 +1,43 @@
+{% extends 'help/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+        {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-muted" style="font-size: 26px">
+              <b>Reply to:</b> {{ question.description }}
+          </h1>
+           <div class="row">
+               <div class="col-md-8">
+{#                   {{ question.description }}#}
+                  <div class="col-md-12">
+                  <form action="{% url 'admin_reply_to_question' %}" method="post">
+                      {% csrf_token %}
+                      <div id="div_id_question" class="form-group">
+                          <input type="hidden" name="question" value="{{ question.id }}">
+{#                          <label for="id_question" class="control-label  requiredField">#}
+{#                          Question<span class="asteriskField">*</span> </label> <div class="controls ">#}
+{#                          <select name="question" class="select form-control" required="" id="{{ question.id }}">#}
+{#                              <option value="{{ question.id }}" disabled="disabled">{{ question.description }}</option>#}
+{#                          </select>#}
+                      </div>
+                      </div> <div id="div_id_description" class="form-group">
+                      <label for="id_description" class="control-label  requiredField">
+                          Description<span class="asteriskField">*</span> </label> <div class="controls ">
+                      <textarea name="description" cols="40" rows="10" class="textarea form-control" required="" id="id_description"></textarea> </div> </div>
+                      <input value="Save" type="submit">
+                  </form>
+               </div>
+               </div>
+           </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

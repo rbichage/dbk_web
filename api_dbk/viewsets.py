@@ -1,5 +1,6 @@
-from rest_framework import viewsets
-from accounts.models import Donor, County, Hospital, Event
+from rest_framework import viewsets, permissions
+from accounts.models import Donor, County, Hospital, Event, Appointment
+from api_dbk.appointments.serializers import AppointmentSerializer
 from api_dbk.counties.serializers import CountySerializer
 from api_dbk.events.serializers import EventSerializer
 from api_dbk.hospitals.serializers import HospitalSerializer
@@ -24,4 +25,6 @@ class HospitalViewSet(viewsets.ModelViewSet):
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
 

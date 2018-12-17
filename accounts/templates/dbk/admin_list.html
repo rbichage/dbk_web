@@ -1,0 +1,76 @@
+{% extends 'help/base.html' %}
+
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+        {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-muted" style="font-size: 26px">
+               Help Platform Admins
+              <p class="pull-right"><a href="{% url 'add_new_admin' %}" class="btn btn-primary">Add Admin</a></p>
+          </h1>
+        <div class="row">
+            {% if messages %}
+            <div class="alert alert-success">
+                {% for m in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ m }}</li>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+           <div class="row table-responsive">
+                <table id="example">
+                    <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Username</th>
+                          <th>Email</th>
+                          <th>Joined</th>
+{#                          <th>Info</th>#}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if admins %}
+                      {% for admin in admins %}
+                      <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{ admin.username }}</td>
+                          <td>{{ admin.email }}</td>
+                          <td>{{ admin.date_joined|date:"M d, Y" }}</td>
+{#                          <td><a href="">#}
+{#                              <span class="badge">Learn more</span>#}
+{#                          </a></td>#}
+                          </tr>
+                           {% endfor %}
+                          {% else %}
+                          <div class="row">
+                            <p class="text-center">No Admins Users Yet!</p>
+                          </div>
+                      {% endif %}
+                    </tbody>
+                </table>
+           {% include 'help/pagination.html' %}
+           </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <script>
+        $(function () {
+            $("#example").dataTable();
+        })
+    </script>
+{% endblock %}

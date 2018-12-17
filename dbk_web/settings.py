@@ -31,11 +31,13 @@ ALLOWED_HOSTS = ['10.0.2.2',
                  '128.10.1.131',
                  '10.42.0.1',
                  'dbke.herokuapp.com',
+                 '192.168.43.65'
                  ]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'api_dbk',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -162,6 +164,3 @@ REST_FRAMEWORK = {
 
 }
 LOGIN_REDIRECT_URL = '/accounts/'
-
-
-

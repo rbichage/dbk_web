@@ -1,0 +1,65 @@
+{% extends 'help/base.html' %}
+
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-muted" style="font-size: 26px">
+              Categories
+              <p class="pull-right"><a href="{% url 'categories_create' %}" class="btn btn-primary">Add Category</a></p>
+          </h1>
+        <div class="row">
+            {% if messages %}
+            <div class="alert alert-success">
+                {% for m in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ m }}</li>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+           <div class="row">
+                <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>Created</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if category_list %}
+                      {% for category in category_list %}
+                          <tr>
+                              <td>{{ category.name }}</td>
+                              <td>{{ category.created_at|date:"M d, Y" }}</td>
+                              <td><a href="{% url 'category_update' category.pk %}">
+                                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                              </a></td>
+                              <td><a href="{% url 'category_delete' category.id %}">
+                                  <i class="fa fa-trash" aria-hidden="true" style="color: #ED5E68">
+                                  </i>
+                              </a></td>
+
+                          </tr>
+                           {% endfor %}
+                          {% else %}
+                          <div class="row">
+                            <p class="text-center">No Categories Yet!</p>
+                          </div>
+                      {% endif %}
+                    </tbody>
+                </table>
+           {% include 'help/pagination.html' %}
+           </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'help/base.html' %}
+{% load staticfiles%}
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+    <link rel="stylesheet" href="{% static 'css/comment.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="row">
+                <div class="col-sm-6 blog-main">
+                    <div class="blog-post">
+                        <h2 class="blog-post-title" style="font-size: 16px">{{ question.description }}</h2>
+                        <p class="blog-post-meta">{{ question.created_at|date:"M d, Y" }} by <strong class="text-info">{{ question.helper }}</strong></p>
+                        {% if question.image_url %}
+                            <div class="img">
+                                <img src="{{ question.image_url.url }}" alt="" height="230px" width="450px" class="img-responsive">
+                            </div><br>
+                            {% elif question.video_url %}
+                            <div class="table-responsive">
+                                <video class="embed-responsive-item thumbnails" controls>
+                                    <source src="{{ news.video_url.url }}" type="video/mp4">
+                                     Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            {% else %}
+                        {% endif %}
+                    {% with replies.count as total_replies %}
+                    <h2 class="page-header">{{ total_replies }}  {% if total_replies == 0 %} Comment {% else %} Comments{% endif %}
+                        <p class="pull-right"><a href="{% url 'admin_get_question_to_reply' question.id %}" class="btn btn-primary">add a comment</a></p>
+
+                    </h2>
+                    {% endwith %}
+                    {% for comment in replies %}
+                        <blockquote>
+                        <p style="font-size: 16px">{{ comment.description }}</p>
+                        <p class="blog-post-meta" style="font-size: 12px">{{ comment.created_at|date:"M d, Y" }} by <strong class="text-info">
+                            {% if comment.helper.id %}
+                                <a href="{% url 'helper_detail' comment.helper.id %}">{{ comment.helper }}</a>
+                                {% else %}
+                                <a href="{% url 'admin_list' %}">{{ comment.admin }}</a>
+                            {% endif %}
+                        </strong>
+                        </p>
+                    </blockquote>
+                        {% empty %}
+                        <p class="text-info">No Comments Yet!</p>
+                    {% endfor %}
+
+                    </div><!-- /.blog-post -->
+                </div><!-- /.blog-main -->
+
+                <div class="col-sm-6  blog-sidebar">
+                    <div class="sidebar-module">
+                        <h4>Question Location</h4>
+                        <div class="thumbnail">
+                            <div id="mapContainer" style="width: 495px; height: 350px;" class="img-responsive"></div>
+                        </div>
+                    </div>
+                </div><!-- /.blog-sidebar -->
+            </div><!-- /.row -->
+      </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+{#    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPPjwB_Yb6Gcxh5AQf3py6O0cnVwkOXNI&libraries=geometry,places&sensor=false&signed_in=true"></script>#}
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPPjwB_Yb6Gcxh5AQf3py6O0cnVwkOXNI&callback=myMap"></script>
+    <script>
+    // LOCATION IN LATITUDE AND LONGITUDE.
+    var center = new google.maps.LatLng({{ question.lat }}, {{ question.lng }});
+
+    function initialize() {
+        // MAP ATTRIBUTES.
+        var mapAttr = {
+            center: center,
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        // THE MAP TO DISPLAY.
+        var map = new google.maps.Map(document.getElementById("mapContainer"), mapAttr);
+        new google.maps.Marker({map: map, position: center });
+        var circle = new google.maps.Circle({
+            center: center,
+            map: map,
+            radius: {{ question.radius }} * 1000,          // IN METERS.
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2         // DON'T SHOW CIRCLE BORDER.
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+{% endblock %}

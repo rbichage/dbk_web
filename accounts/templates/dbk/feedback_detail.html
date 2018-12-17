@@ -1,0 +1,41 @@
+{% extends 'help/base.html' %}
+{% load staticfiles%}
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/news.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="row">
+                <div class="col-sm-11 blog-main">
+                    <div class="blog-post">
+                        <h2 class="blog-post-title text-muted" style="font-size: 18px"> Feed back from <a href="{% url 'helper_detail' feedback.helper_id %}">{{ feedback.helper }}</a></h2>
+                        <p class="blog-post-meta">{{ feedback.created_at|date:"M d, Y" }}</p>
+                        <p> {{ feedback.message|safe|linebreaksbr }}</p>
+                    <p class="pull-left"><a href="{% url 'helper_feedback' %}" class="btn btn-primary">feedback</a></p>
+                    </div><!-- /.blog-post -->
+                </div><!-- /.blog-main -->
+
+                <div class="col-sm-1 col-sm-offset-1 blog-sidebar">
+{#                    <div class="sidebar-module">#}
+{#                        <h4>Interesting Links</h4>#}
+{#                        <ol class="list-unstyled">#}
+{#                            <li><a href="{% url 'reports_overview_analysis' %}">Overview Analysis</a></li>#}
+{#                            <li><a href="{% url 'reports_gender_analysis' %}">Gender Analysis</a></li>#}
+{#                            <li><a href="{% url 'reports_questions_analysis' %}">Questions and Reply Analysis</a></li>#}
+{#                        </ol>#}
+{#                    </div>#}
+                </div><!-- /.blog-sidebar -->
+            </div><!-- /.row -->
+      </div>
+    </div>
+{% endblock %}

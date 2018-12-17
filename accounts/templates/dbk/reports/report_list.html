@@ -1,0 +1,117 @@
+{% extends 'help/base.html' %}
+
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+         {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-muted" style="font-size: 26px">
+              Reports
+          </h1>
+           <div class="row">
+                <div class="col-md-6 ">
+                    <div class="thumbnail">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <canvas id="bar-chart-horizontal" width="800" height="700"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="thumbnail">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <canvas id="pie-chart" width="800" height="700"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+           </div>
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="thumbnail">
+                        <div class="row">
+                            <div class="col-md-12"><br><br>
+                               <canvas id="bar-chart" width="800" height="600"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script>
+        new Chart(document.getElementById("pie-chart"), {
+            type: 'pie',
+            data: {
+              labels: ["Male", "Female"],
+              datasets: [{
+                label: "Users in (numbers)",
+                backgroundColor: ["#99CDFF", "#FF99CB"],
+                data: [{{ male }},{{ female }}]
+              }]
+            },
+            options: {
+              title: {
+                display: true,
+                text: 'Gender analysis of the registered user'
+              }
+            }
+        });
+{#        overview of the platform analysis #}
+        new Chart(document.getElementById("bar-chart-horizontal"), {
+            type: 'horizontalBar',
+            data: {
+              labels: ["Users", "Questions", "Questions Replies", "Reported Abuses"],
+              datasets: [
+                {
+                  label: "Usage in (numbers)",
+                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
+                  data: [{{ users }},{{ questions }},{{ replies }},{{ abuses }}]
+                }
+              ]
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: 'Quick Overview of Help App Usage'
+              }
+            }
+        });
+        // Bar chart
+        new Chart(document.getElementById("bar-chart"), {
+            type: 'bar',
+            data: {
+
+            labels: [{% for country in countries %}"{{ country.name }}",{% endfor %}],
+              datasets: [
+                {
+                  label: "Registered users",
+                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                  data: [{% for country in countries %}"{{ country.helper__count }}",{% endfor %}]
+                }
+              ]
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: 'Registered Users Per Country'
+              }
+            }
+        });
+    </script>
+{% endblock %}

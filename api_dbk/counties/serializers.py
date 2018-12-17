@@ -13,14 +13,14 @@ class AdminSerializer(serializers.ModelSerializer):
 class CountySerializer(serializers.ModelSerializer):
     class Meta:
         model = County
-        fields = ('id', 'code', 'name')
+        fields = 'name'
 
     def create(self, validated_data):
-        country = County(
+        county = County(
             name=validated_data['name'],
         )
-        country.save()
-        return country
+        county.save()
+        return county
 
     def update(self, instance, validated_data):
         instance.name = validated_data.get('name', instance.name)
@@ -52,7 +52,6 @@ class NewsSerializer(serializers.ModelSerializer):
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
         instance.image_url = validated_data.get('image_url', instance.image_url)
-        instance.video_url = validated_data.get('video_url', instance.video_url)
         instance.admin = validated_data.get('admin', instance.admin)
 
         instance.save()

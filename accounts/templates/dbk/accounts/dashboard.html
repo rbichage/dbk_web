@@ -1,0 +1,154 @@
+{% extends 'dbk/base.html' %}
+
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          {% include 'dbk/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Dashboard</h1>
+          <div class="row">
+                <div class="col-md-3">
+                    <div class="thumbnail">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="fa fa-users" aria-hidden="true" style="font-size: 100px; color: #5cb85c"></i>
+                            </div>
+                            <div class="col-md-6"><br><br>
+                                <p class="text-left"> {% if num_helpers == 0 %}
+                                0 {% else %} {{ num_helpers }}
+                                {% endif %}
+                                    <a href="{% url 'helpers' %}">Mobile Users</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="col-md-3 ">
+                    <div class="thumbnail">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="fa fa-question-circle-o" aria-hidden="true" style="font-size: 100px; color: #f0ad4e"></i>
+                            </div>
+                            <div class="col-md-6"><br><br>
+                                <p class="text-left">{% if num_questions == 0 %}
+                                0 {% else %} {{ num_questions }}
+                                {% endif %}
+                                    <a href="{% url 'questions' %}">Questions Asked</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="col-md-3 ">
+                    <div class="thumbnail">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="fa fa-reply-all" aria-hidden="true" style="font-size: 100px; color: #5AC8FA" ></i>
+                            </div>
+                            <div class="col-md-6"><br><br>
+                                <p class="text-left">{% if replies == 0 %}
+                                0 {% else %} {{ replies }}
+                                {% endif %}
+                                    <a href="{% url 'questions' %}">Replies</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="col-md-3 ">
+                    <div class="thumbnail">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <i class="fa fa-flag" aria-hidden="true" style="font-size: 100px; color: #d9534f"></i>
+                            </div>
+                            <div class="col-md-6"><br><br>
+                                <p class="text-left">{% if num_abuses == 0 %}
+                                0 {% else %} {{ num_abuses }}
+                                {% endif %}
+                                    <a href="{% url 'abuses' %}">Reported Abuses</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+        <div class="row">
+            <div class="col-md-4">
+                <canvas id="bar-chart" width="800" height="650"></canvas>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-group">
+                    <li class="list-group-item active"><strong>News</strong></li>
+                    {% for news in news_list %}
+                        <li class="list-group-item">
+                            {% if news.title  %}
+                                {{ news.title|truncatewords:5 }}
+                            {% else %}
+                            <p class="text-danger"></p>
+                        {% endif %}
+                            <span class="label label-info pull-right"><a href="{% url 'news_detail' news.id %}" style="color: #ffffff">More Info</a></span>
+                        <div class="clearfix"></div>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No news yet!
+                            <i class="fa fa-frown-o" aria-hidden="true" style="color: #d9534f"></i>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul class="list-group">
+                    <li class="list-group-item active"><strong>Latest Members</strong></li>
+                    {% for helper in new_helpers %}
+                        <li class="list-group-item">{% if helper.email  %}
+                            {{ helper.email }}
+                            {% else %}
+                            <p class="text-danger">User has not filled profile yet!</p>
+                        {% endif %}
+                            <span class="label label-info pull-right"><a href="{% url 'helper_detail' helper.id %}" style="color: #ffffff">More Info</a></span>
+                        <div class="clearfix"></div>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No Registered user yet!
+                            <i class="fa fa-frown-o" aria-hidden="true" style="color: #d9534f"></i>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script>
+    // Bar chart
+        new Chart(document.getElementById("bar-chart"), {
+            type: 'bar',
+            data: {
+
+            labels: [{% for country in countries %}"{{ country.name }}",{% endfor %}],
+              datasets: [
+                {
+                  label: "Registered users",
+                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                  data: [{% for country in countries %}"{{ country.helper__count }}",{% endfor %}]
+                }
+              ]
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: 'Registered Users Per Country'
+              }
+            }
+        });
+    </script>
+{% endblock %}

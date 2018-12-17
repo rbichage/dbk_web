@@ -1,0 +1,56 @@
+{% extends 'help/base.html' %}
+
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-muted" style="font-size: 26px">
+              Overview Analysis of the Help App
+          </h1>
+           <div class="row">
+               <div class="col-md-8 col-md-offset-2">
+                   <canvas id="doughnut-chart" width="800" height="450"></canvas>
+               </div>
+           </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script>
+        new Chart(document.getElementById("doughnut-chart"), {
+            type: 'doughnut',
+            data: {
+              labels: ["Male Users", "Female Users", "Questions", "Reported Abuses", "Replies"],
+              datasets: [
+                {
+                  label: "Statistics (numbers)",
+                  backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                  data: [
+                      {% if male == 0 %}0 {% else %} {{ male }}{% endif %},
+                      {% if female == 0 %}0 {% else %} {{ female }}{% endif %},
+                      {% if num_questions == 0 %}0 {% else %} {{ num_questions }}{% endif %},
+                      {% if num_abuses == 0 %}0 {% else %} {{ num_abuses }}{% endif %},
+                      {% if num_replies == 0 %}0 {% else %} {{ num_replies }}{% endif %},
+                  ]
+                }
+              ]
+            },
+            options: {
+              title: {
+                display: true,
+                text: 'Usage of Help Mobile Application in Year {% now "Y" %}'
+              }
+            }
+        });
+   </script>
+{% endblock %}

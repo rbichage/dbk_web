@@ -1,0 +1,58 @@
+{% extends 'dbk/base.html' %}
+
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          {% include 'dbk/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-muted" style="font-size: 26px">
+              Question: {{ abuse.question }}
+          </h1>
+           <div class="row">
+               <div class="col-md-12">
+                   <div class="thumbnail">
+                       <div class="caption">
+                           <h4 class="text-muted">
+                               {{ abuse.question }}
+                           <p class="pull-right">by <a href="{% url 'helper_detail' abuse.question.helper.id %}">{{ abuse.question.helper.first_name }}</a></p>
+                           </h4>
+                           <br>
+                           <p><u>Complain</u></p>
+                           <p>{{ abuse.reason }}</p>
+                           <p>Reported by: <a href="{% url 'helper_detail' abuse.helper.id %}">{{ abuse.helper }}</a></p>
+                           <br>
+                           <br>
+                           <p class="page-header">Admin Action</p>
+                           <h4 class="text-muted">
+                               {% if abuse.question.status %}
+                                visible in the app
+                                <a href="{% url 'admin_question_deactivate' abuse.question.id %}"><button type="button" class="btn btn-sm btn-success">Remove from app</button></a>
+                                {% else %}
+                                not visible in the app
+                                <a href="{% url 'admin_question_activate' abuse.question.id %}"><button type="button" class="btn btn-sm btn-danger">Add to the app</button></a>
+                            {% endif %}
+                               <p class="pull-right">block <a href="{% url 'helper_detail' abuse.question.helper.id %}">{{ abuse.question.helper.first_name }}</a></p>
+                           </h4>
+                       </div>
+                   </div>
+               </div>
+{#                <div class="col-md-6">#}
+{#                   <div class="thumbnail">#}
+{#                       <div class="caption">#}
+{#                           <h4 class="text-info">{{ abuse.question }} by <strong>{{ abuse.question.helper.first_name }}</strong></h4>#}
+{#                           <p></p>#}
+{#                           <p><a href="{% url 'helper_detail' abuse.helper.id %}"><button type="button" class="btn btn-primary">Reported by: {{ abuse.helper }}</button></a></p>#}
+{#                       </div>#}
+{#                   </div>#}
+{#               </div>#}
+           </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

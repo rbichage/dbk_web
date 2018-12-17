@@ -5,13 +5,13 @@ from accounts.models import Donor, Hospital, County, Event, News, Appointment
 
 
 class DonorAdmin(admin.ModelAdmin):
-    list_display = ('first_name',
+    list_display = ('username',
+                    'first_name',
                     'last_name',
                     'birthdate',
                     'age',
                     'date_donated',
                     'county_name',
-
 
                     )
 
@@ -21,6 +21,7 @@ admin.site.register(Donor, DonorAdmin),
 
 class HospitalAdmin(admin.ModelAdmin):
     list_display = (
+        'id',
         'hospital_name',
         'county_name',
         'phone_number'
@@ -32,7 +33,7 @@ admin.site.register(Hospital, HospitalAdmin),
 
 class CountyAdmin(admin.ModelAdmin):
     list_display = (
-        'code',
+        'id',
         'name'
     )
 
@@ -52,8 +53,6 @@ class EventAdmin(admin.ModelAdmin):
 admin.site.register(Event, EventAdmin)
 # vim: set fileencoding=utf-8 :
 from django.contrib import admin
-
-from . import models
 
 
 class CountyAdmin(admin.ModelAdmin):

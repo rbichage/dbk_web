@@ -14,7 +14,7 @@ def upload_location(instance, filename):
 
 
 class News(models.Model):
-    title = models.CharField(max_length=100, help_text='One hundred character!')
+    title = models.CharField(max_length=100, help_text='max. of One hundred characters')
     description = models.TextField(null=True)
     image_url = models.ImageField(
         upload_to=upload_location,
@@ -37,10 +37,8 @@ class News(models.Model):
 
 
 class County(models.Model):
-    CODE_CHOICES = [(i, str(i)) for i in range(1, 46)]
 
     name = models.CharField(max_length=20, unique=True)
-    code = models.IntegerField(default='1', unique=True)
 
     def __str__(self):
         return self.name
@@ -59,9 +57,9 @@ class Donor(auth.models.User):
     # B_neg =
     #
     GENDER_CHOICES = (
-        (Male, 'male'),
-        (Female, 'female'),
-        (NOT_SET, 'Not Set'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+
     )
     BLOOD_CHOICES = (
         ('A+', 'A+'),
@@ -82,19 +80,19 @@ class Donor(auth.models.User):
             return None
         return int((datetime.now().date() - self.birthdate).days / 365.25)
 
-    blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=40, default='choose', null=True, blank=True)
+    blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=40, default='choose', null=True, blank=True,)
     date_donated = models.DateField(null=True, blank=True)
-    county_name = models.ForeignKey(County, on_delete=models.CASCADE, null=True, blank=True)
-    gender = models.IntegerField(choices=GENDER_CHOICES, default=NOT_SET, null=True, blank=True)
+    county_name = models.CharField(max_length=50, null=True, blank=True)
+    gender = models.CharField(null=True, blank=True, max_length=20,)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message=
                                  "Phone number must be entered in the format: '+254xxxxxxx'. Up to 15 digits allowed."
                                  )
     phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
-    image = models.ImageField(upload_to='profile_photo', blank=True)
+    image = models.ImageField(upload_to='static/profiles', blank=True)
 
     def __str__(self):
-        return self.first_name
+        return self.username
 
     class Meta:
         verbose_name_plural = "Donors"

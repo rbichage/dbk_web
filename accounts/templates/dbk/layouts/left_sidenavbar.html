@@ -1,0 +1,43 @@
+<ul class="nav nav-sidebar">
+    {% url 'dashboard' as dash %}
+     <li {% if request.path == dash %} class="active"{% endif %}><a href="{% url 'dashboard' %}">
+        <i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+</ul>
+
+<ul class="nav nav-sidebar">
+    {% url 'helper_feedback' as feedback %}
+    {% url 'abuses' as abuses %}
+    {% url 'admin_reply_list' as reply %}
+    {% url 'countries' as country %}
+     <li {% if request.path == feedback %} class="active"{% endif %}><a href="{% url 'helper_feedback' %}">
+        <i class="fa fa-comments-o" aria-hidden="true"></i> Users Feedback</a></li>
+     <li {% if request.path == abuses %} class="active"{% endif %}><a href="{% url 'abuses' %}">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Reported Abuses</a></li>
+    <li{% if request.path == reply %} class="active"{% endif %}><a href="{% url 'admin_reply_list' %}">
+        <i class="fa fa-reply-all" aria-hidden="true"></i> Admin Replies</a></li>
+</ul>
+<ul class="nav nav-sidebar">
+    {% url 'categories' as categories %}
+    {% url 'sub_categories' as subcategories %}
+    <li {% if request.path == categories %} class="active"{% endif %}><a href="{% url 'categories' %}">
+        <i class="fa fa-address-book-o" aria-hidden="true"></i> Categories</a></li>
+    <li {% if request.path == subcategories %} class="active"{% endif %}><a href="{% url 'sub_categories' %}">
+        <i class="fa fa-address-card" aria-hidden="true"></i> Sub Categories</a></li>
+</ul>
+<ul class="nav nav-sidebar">
+    {% url 'reports' as report %}
+    {% url 'users_per_country' as userspercountry  %}
+    <li {% if request.path == report %} class="active"{% endif %}><a href="{% url 'reports' %}">
+        <i class="fa fa-area-chart" aria-hidden="true"></i> Reports</a></li>
+{#    <li {% if request.path == userspercountry %} class="active"{% endif %}><a href="{% url 'users_per_country' %}">#}
+{#        <i class="fa fa-user-plus" aria-hidden="true"></i> Users Per Country</a></li>#}
+</ul>
+<ul class="nav nav-sidebar">
+    {% url 'admin_list' as abuses %}
+
+    <li{% if request.path == abuses %} class="active"{% endif %}><a href="{% url 'admin_list' %}">
+        <i class="fa fa-lock" aria-hidden="true"></i> Admins</a></li>
+{#    <li {% if request.path == country %} class="active"{% endif %}>#}
+{#        <a href="{% url 'countries' %}"><i class="fa fa-globe" aria-hidden="true"></i> Countries</a>#}
+{#    </li>#}
+</ul>

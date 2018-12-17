@@ -9,7 +9,8 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED
 from rest_framework.views import APIView
 
-from accounts.models import Donor, County, News
+from accounts.models import Donor, County, News, Appointment
+from api_dbk.appointments.serializers import AppointmentSerializer
 from api_dbk.counties.serializers import CountySerializer, NewsSerializer
 from api_dbk.donors.donor_serializers import DonorProfileSerializer
 
@@ -37,6 +38,19 @@ class DonorProfileList(generics.ListCreateAPIView):
     serializer_class = DonorProfileSerializer
     permission_classes = ()
 
+
+class AppointmentList(generics.ListCreateAPIView):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class AppointmentDetails(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Appointment.objects.all()
+    serializer_class = AppointmentSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
 # update user profile
 
 
@@ -48,12 +62,12 @@ class DonorProfileDetails(APIView):
         except Donor.DoesNotExist:
             raise Http404
 
-    def get(self, request, pk, format=None):
+    def get(self, request, pk):
         donor = self.get_object(pk)
         serializer = DonorProfileSerializer(donor)
         return Response(request, serializer.data)
 
-    def put(self, request, pk, format=None):
+    def put(self, request, pk):
         try:
             donor = self.get_object(pk)
             serializer = DonorProfileSerializer(donor, data=request.data)
@@ -72,7 +86,7 @@ class DonorProfileDetails(APIView):
             response.reason_phrase = str(exception)
             return response
 
-    def delete(self, request, pk, format=None):
+    def delete(self, request, pk):
         donor = self.get_object(pk)
         donor.delete()
         return Response(request, status=status.HTTP_204_NO_CONTENT)

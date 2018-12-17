@@ -1,0 +1,115 @@
+{% extends 'help/base.html' %}
+{% load staticfiles %}
+
+{% load crispy_forms_tags %}
+{% block styles %}
+    <style>
+    #id_description{
+        width: 1050px;
+        height: 200px;
+    }
+    </style>
+{% endblock %}
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-muted" style="font-size: 26px">
+              Update News
+          </h1>
+           <div class="row">
+               <div class="col-md-12">
+                   <form action="" method="post" enctype="multipart/form-data">
+                   {% csrf_token %}
+                   <div class="form-group">
+                       <label for="id_title">Title<span class="asteriskField">*</span></label>
+                       <input type="text" class="form-control" id="id_title" placeholder="" name="title" value="{{ news.title }}">
+                   </div>
+                   <div class="form-group">
+                       <label for="id_description">Body<span class="asteriskField">*</span></label>
+                       <textarea class="form-control" rows="4" id="id_description" name="description" style="width: 100%;">
+                           {{ news.description|safe|linebreaksbr }}
+                       </textarea>
+                   </div>
+                       <div class="form-group">
+                        {% if news.image_url %}
+                            <div class="img">
+                                <img src="{{ news.image_url.url }}" alt="" height="230px" width="450px">
+                            </div><br>
+                            {% elif news.video_url %}
+                            <div class="table-responsive">
+                                <video class="embed-responsive-item thumbnails" controls>
+                                    <source src="{{ news.video_url.url }}" type="video/mp4">
+                                     Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            {% else %}
+
+                        {% endif %}
+                    </div>
+                   <div class="form-group">
+                       <label for="file_type" class="col-sm-2 control-label">File type</label>
+
+                       <select class="form-control" id="file_type">
+                           <option value="0">Select file type</option>
+                           <option value="1">Image</option>
+                           <option value="2">Video</option>
+
+                       </select>
+
+                   </div>
+
+
+                   <div class="form-group" id="div_id_image_url" style="display: none;">
+                       <label for="image">Image</label>
+                       <input name="image_url" class="clearablefileinput" id="id_image_url" type="file">
+                   </div>
+
+
+                   <div class="form-group" id="div_id_video_url" style="display: none;">
+                       <label for="id_video_url">Video(mp4)</label>
+                       <input name="video_url" class="clearablefileinput" id="id_video_url" type="file">
+                   </div>
+                   <button type="submit" class="btn btn-primary">Update</button>
+               </form>
+               </div>
+{#               <div class="col-md-12 form-group">#}
+{#                  <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}#}
+{#                      {{ form|crispy }}#}
+{#                      <input type="submit" value="Save" class="btn btn-primary"/>#}
+{#                  </form>#}
+{#               </div>#}
+           </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $("#file_type").change(function(){
+
+           var selected_option = parseInt(this.value);
+
+
+            if(selected_option === 1 ){
+                {% comment %}image seleced{% endcomment %}
+                $("#div_id_image_url").slideDown();
+                $("#div_id_video_url").slideUp();
+
+            }else{
+                {% comment %}video selected {% endcomment %}
+
+                $("#div_id_video_url").slideDown();
+                $("#div_id_image_url").slideUp();
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,11 +1,8 @@
-from abc import ABC
-
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from rest_framework_jwt.settings import api_settings
 
 from accounts.models import Donor
-from api_dbk.counties.serializers import CountySerializer
 
 jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -14,6 +11,12 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 class LoginSerializer(serializers.Serializer):
     username = serializers.CharField(max_length=50)
     password = serializers.CharField()
+
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
 
 
 class DonorProfileSerializer(serializers.ModelSerializer):
@@ -26,15 +29,16 @@ class DonorProfileSerializer(serializers.ModelSerializer):
             message="Phone number already in use",
         )])
     birthdate = serializers.DateField(read_only=False, required=False, allow_null=True)
-    gender = serializers.IntegerField(required=False, read_only=False, allow_null=True)
+    gender = serializers.CharField(required=False, read_only=False, allow_null=True)
+    image = serializers.ImageField(allow_null=True, required=False)
 
     class Meta:
         model = Donor
         fields = (
             'id', 'username', 'first_name', 'last_name', 'username', 'gender', 'phone_number', 'birthdate',
             'email',
-            'image_url',
-            'image_url'
+            'image',
+            'image'
         )
 
         read_only_fields = ('updated_at', 'created_at')
@@ -63,14 +67,16 @@ class SignUpSerializer(serializers.ModelSerializer):
         UniqueValidator(queryset=Donor.objects.all(), message="username  already in use", )])
     first_name = serializers.CharField(max_length=50, required=True, allow_null=False)
     last_name = serializers.CharField(max_length=50, required=True, allow_null=False)
-    birthdate = serializers.CharField(max_length=20, required=True, allow_null=False)
+    birthdate = serializers.CharField(max_length=20, required=False, allow_null=True)
+    county_name = serializers.CharField(max_length=40, required=False, allow_null=True)
+    gender = serializers.CharField(max_length=20, required=False, allow_null=True)
 
     class Meta:
         model = Donor
         fields = ('id', 'username', 'first_name', 'last_name',
-                  'password', 'email', 'birthdate', 'gender',
+                  'password', 'email', 'birthdate', 'gender', 'county_name',
 
-                  'first_name', 'last_name', 'gender', 'birthdate')
+                  'first_name', 'last_name', 'gender', 'birthdate', 'county_name')
         extra_kwargs = {'password': {'write_only': True}}
         read_only_fields = ('updated_at', 'created_at')
 
@@ -80,7 +86,9 @@ class SignUpSerializer(serializers.ModelSerializer):
             email=validated_data['email'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            birthdate=validated_data['birthdate']
+            birthdate=validated_data['birthdate'],
+            county_name=validated_data['county_name'],
+            gender=validated_data['gender']
         )
         user.set_password(validated_data['password'])
         user.save()
@@ -92,7 +100,9 @@ class SignUpSerializer(serializers.ModelSerializer):
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.email = validated_data.get('email', instance.email)
         instance.birthdate = validated_data.get('birthdate', instance.birthdate)
-        instance.set_password(validated_data.get('password'))
+        instance.county_name = validated_data.get('county_name', instance.county_name)
+        instance.set_password = (validated_data.get('password'))
+        instance.gender = validated_data.get('gender', instance.gender)
 
         instance.save()
         return instance
@@ -104,7 +114,7 @@ class DonorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donor
         fields = ('id', 'username', 'email', 'first_name', 'token',
-                  'last_name')
+                  'last_name', 'birthdate', 'county_name', 'age', 'phone_number', 'date_donated')
         read_only_fields = ('id', 'token')
 
     @staticmethod

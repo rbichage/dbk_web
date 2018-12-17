@@ -1,0 +1,32 @@
+{% extends "dbk/base.html" %}
+{% load staticfiles %}
+{% block title %}Welcome to Help App | Ask for help {% endblock %}
+
+{% block content %}
+ <div class="container-fluid">
+    <div class="row css_selector">
+        <div class="section-heading text-center">
+          <h2 style="color: #ffffff">Help is an app that will help you get assistance.</h2><br>
+          <p class="text-muted" style="color: #ffffff;font-size: 17px">Our platform help connect people with similar interest and they can help<br>
+          each other incase of health emergency, tourist attraction sites and many more topics!</p>
+          <div class="badges">
+              <a class="badge-link" href="#">
+                  <img src="{% static 'img/google-play-badge.svg' %}" alt="" style="height: 150px; width: 150px">
+              </a>
+          </div>
+        </div>
+    </div>
+    
+     <footer>
+      <div class="container">
+        <p>&copy;  {% now "Y" %} Help Platform. All Rights Reserved.</p>
+      </div>
+    </footer>
+ </div>
+ </div>
+    {#    <div class="row" >#}
+{#        <div class="jumbotron">#}
+{#            <h1 class="introduction" style=" color: #ffffff;"><strong>Comming Soon!</strong></h1>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}

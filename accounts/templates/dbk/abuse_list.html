@@ -1,0 +1,68 @@
+{% extends 'help/base.html' %}
+
+{% block title %}
+    Help Admin Dashboard
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+         {% include 'help/layouts/left_sidenavbar.html' %}
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header text-muted" style="font-size: 26px">
+              Reported Abuses
+          </h1>
+        <div class="row">
+            {% if messages %}
+            <div class="alert alert-success">
+                {% for m in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ m }}</li>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+           <div class="row">
+                <table class="table table-striped table-hover">
+                    <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Question</th>
+                          <th>Reported by</th>
+                          <th>Reason</th>
+                          <th>Detail</th>
+                      </tr>
+                    </thead>
+                {% if abuse_list %}
+                    <tbody>
+                      {% for abuse in abuse_list %}
+                          <tr>
+                              <td>{{ forloop.counter }}</td>
+                              <td>
+                                  <a href="{% url 'question_detail' abuse.question.id %}">{{ abuse.question|truncatewords:8 }}</a>
+                              </td>
+                              <td>{{ abuse.helper|safe }}</td>
+                              <td>{{ abuse.reason|truncatewords:5  }}</td>
+                              <td><a href="{% url 'abuse_report' abuse.id %}">
+                                 <span class="label label-primary">learn more</span>
+                              </a></td>
+
+                          </tr>
+                           {% endfor %}
+                    </tbody>
+                          {% else %}
+                          <div class="row">
+                            <p class="text-center text-info">No Reported Abuse Yet!</p>
+                          </div>
+
+                {% endif %}
+                </table>
+           {% include 'help/pagination.html' %}
+           </div>
+        <div class="row">
+        </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
