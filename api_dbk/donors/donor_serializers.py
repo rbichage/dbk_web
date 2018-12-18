@@ -88,7 +88,6 @@ class SignUpSerializer(serializers.ModelSerializer):
             last_name=validated_data['last_name'],
             birthdate=validated_data['birthdate'],
             county_name=validated_data['county_name'],
-            gender=validated_data['gender']
         )
         user.set_password(validated_data['password'])
         user.save()
@@ -102,7 +101,6 @@ class SignUpSerializer(serializers.ModelSerializer):
         instance.birthdate = validated_data.get('birthdate', instance.birthdate)
         instance.county_name = validated_data.get('county_name', instance.county_name)
         instance.set_password = (validated_data.get('password'))
-        instance.gender = validated_data.get('gender', instance.gender)
 
         instance.save()
         return instance

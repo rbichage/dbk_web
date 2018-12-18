@@ -19,30 +19,34 @@ class SignUpView(APIView):
     permission_classes = ()
 
     @staticmethod
+    @parser_classes((JSONParser, FormParser, MultiPartParser))
     def post(request, format=None):
         try:
             serializer = SignUpSerializer(data=request.data)
 
             if serializer.is_valid():
                 serializer.save()
-                # token, created = Token.objects.get_or_create(user=serializer.instance)
 
                 response = Response({
-                    "user": serializer.data,
-                    # "token": token.key
+                    "success": True,
+                    "donor": serializer.data,
                 })
 
-                response.reason_phrase = "Welcome to dbk"
                 return response
+
             else:
                 response = Response({
+                    "success": False,
                     "error": serializer.errors,
-                    # "error_": serializer.error_messages,
-                    # "data": request.data
+
                 }, status=406)
 
                 if Donor.objects.filter(username=request.data.get("username")).exists():
                     response.reason_phrase = "username already in use"
+
+                if Donor.objects.filter(email=request.data.get("email")).exists():
+
+                    response.reason_phrase = "this email is already taken"
                 else:
                     response.reason_phrase = "Failed to sign you up, Please contact admin"
 
@@ -85,6 +89,7 @@ def login(request):
             if Donor.objects.filter(username=username).exists():
                 response = Response(
                     {"message": "incorrect password, please try again.", }, status=HTTP_400_BAD_REQUEST)
+
             else:
                 response = Response(
                     {"message": "please check your username"}, status=HTTP_400_BAD_REQUEST)
@@ -102,6 +107,3 @@ def login(request):
         return response
     except Exception as e:
         return Response({"success": False, "message": str(e)})
-
-
-
