@@ -5,7 +5,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.compat import authenticate
 from rest_framework.decorators import api_view, permission_classes, parser_classes
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
@@ -16,7 +16,7 @@ from . import donor_serializers as sz
 
 
 class SignUpView(APIView):
-    permission_classes = ()
+    permission_classes = (IsAuthenticated, )
 
     @staticmethod
     @parser_classes((JSONParser, FormParser, MultiPartParser))
@@ -64,7 +64,7 @@ class SignUpView(APIView):
 
 
 @api_view(["POST"])
-@permission_classes((AllowAny,))
+@permission_classes((IsAuthenticated,))
 @parser_classes((JSONParser, FormParser, MultiPartParser))
 def login(request):
     # serializer = sz.LoginSerializer(
