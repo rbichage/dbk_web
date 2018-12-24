@@ -1,17 +1,14 @@
-from django.shortcuts import get_object_or_404
-from django.views import generic
-from rest_framework import status
-from rest_framework.authtoken.models import Token
+from rest_framework.compat import authenticate
 from rest_framework.compat import authenticate
 from rest_framework.decorators import api_view, permission_classes, parser_classes
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
-from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.status import HTTP_401_UNAUTHORIZED, HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 
 from accounts.models import Donor
-from api_dbk.donors.donor_serializers import SignUpSerializer, DonorProfileSerializer
+from api_dbk.donors.donor_serializers import SignUpSerializer
 from . import donor_serializers as sz
 
 
@@ -39,7 +36,7 @@ class SignUpView(APIView):
                     "success": False,
                     "error": serializer.errors,
 
-                }, status=406)
+                }, 406)
 
                 if Donor.objects.filter(username=request.data.get("username")).exists():
                     response.reason_phrase = "username already in use"

@@ -16,11 +16,11 @@ def upload_location(instance, filename):
 class News(models.Model):
     title = models.CharField(max_length=100, help_text='max. of One hundred characters')
     description = models.TextField(null=True)
-    image_url = models.ImageField(
-        upload_to=upload_location,
-        null=True, blank=True,
-        width_field="width_field",
-        height_field="height_field")
+    # image_url = models.ImageField(
+    #     upload_to=upload_location,
+    #     null=True, blank=True,
+    #     width_field="width_field",
+    #     height_field="height_field")
     updated_at = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now=True, null=True)
 

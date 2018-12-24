@@ -12,7 +12,9 @@ urlpatterns = [
     path(r'login/', views.login),
     path(r'signup/', views.SignUpView.as_view()),
     path(r'appointments/', api_view.AppointmentList.as_view()),
-
+    path(r'hospitals/', api_view.HospitalList.as_view()),
+    path(r'countyhospitals/', api_view.CountyHospitalsList.as_view()),
+    path(r'countylist/', api_view.CountyList.as_view()),
     # Update user profile
 
     url(r'^donors/profile/$', api_view.DonorProfileList.as_view()),
@@ -21,17 +23,18 @@ urlpatterns = [
     url(r'^appointments/(?P<pk>[0-9]+)$', api_view.AppointmentDetails.as_view()),
     # path(r'profile/(?P<pk>[0-9]+)/', api_view.DonorProfileDetails.as_view()),
 
+    path(r'news/', api_view.NewsList.as_view()),
+
 ]
 
 # login_router = DefaultRouter()
 # login_router.register('login', views.login)
 # urlpatterns += login_router.urls
 #
-county_router = DefaultRouter()
-county_router.register('counties', CountyViewSet)
-
-urlpatterns += county_router.urls
-#
+# county_router = DefaultRouter()
+# county_router.register('counties', CountyViewSet)
+# urlpatterns += county_router.urls
+# #
 # news_router = DefaultRouter()
 # news_router.register('news', AppointmentList)
 # urlpatterns += news_router.urls
