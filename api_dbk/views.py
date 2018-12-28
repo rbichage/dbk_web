@@ -89,13 +89,18 @@ class DonorProfileDetails(APIView):
 
             if serializer.is_valid():
                 serializer.save()
-                response = Response(serializer.data)
+                response = Response({
+                    "success": True,
+                    "message": "Profile updated successfully",
+                    "donor": serializer.data
+                })
                 response.reason_phrase = "updated successfully"
                 response.status_code = 200
                 return response
 
             response = Response({"success": False, "message": serializer.errors}, 400)
             response.reason_phrase = serializer.error_messages['phone_number']
+
             return response
         except Exception as exception:
             response = Response({"success": False, "message": str(exception), "cause": str(sys.exc_info()[2])},

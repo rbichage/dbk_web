@@ -84,11 +84,7 @@ class Donor(auth.models.User):
     date_donated = models.DateField(null=True, blank=True)
     county_name = models.CharField(max_length=50, null=True, blank=True)
     gender = models.CharField(null=True, blank=True, max_length=20,)
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                 message=
-                                 "Phone number must be entered in the format: '+254xxxxxxx'. Up to 15 digits allowed."
-                                 )
-    phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
     image = models.ImageField(upload_to='static/profiles', blank=True)
 
     def __str__(self):

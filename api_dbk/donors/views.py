@@ -1,6 +1,8 @@
+from rest_framework import permissions, status
 from rest_framework.compat import authenticate
 from rest_framework.compat import authenticate
 from rest_framework.decorators import api_view, permission_classes, parser_classes
+from rest_framework.generics import GenericAPIView
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -8,12 +10,12 @@ from rest_framework.status import HTTP_400_BAD_REQUEST
 from rest_framework.views import APIView
 
 from accounts.models import Donor
-from api_dbk.donors.donor_serializers import SignUpSerializer
+from api_dbk.donors.donor_serializers import SignUpSerializer, PasswordSerializer
 from . import donor_serializers as sz
 
 
 class SignUpView(APIView):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated,)
 
     @staticmethod
     @parser_classes((JSONParser, FormParser, MultiPartParser))
@@ -26,28 +28,39 @@ class SignUpView(APIView):
 
                 response = Response({
                     "success": True,
+                    "message": "Registration successful",
                     "donor": serializer.data,
                 })
 
                 return response
 
-            else:
+            # else:
+            #     response = Response({
+            #         "success": False,
+            #         "message": serializer.errors,
+            #
+            #     }, 406)
+
+            if Donor.objects.filter(username=request.data.get("username")).exists():
                 response = Response({
                     "success": False,
-                    "error": serializer.errors,
+                    "message": "This username is already in use",
+
+                }, 400)
+
+                response.reason_phrase = "username already in use"
+                return response
+
+            if Donor.objects.filter(email=request.data.get("email")).exists():
+                response = Response({
+                    "success": False,
+                    "message": "This email is already in use",
 
                 }, 406)
 
-                if Donor.objects.filter(username=request.data.get("username")).exists():
-                    response.reason_phrase = "username already in use"
-
-                if Donor.objects.filter(email=request.data.get("email")).exists():
-
-                    response.reason_phrase = "this email is already taken"
-                else:
-                    response.reason_phrase = "Failed to sign you up, Please contact admin"
-
+                response.reason_phrase = "this email is already taken"
                 return response
+
 
         except Exception as e:
             response = Response({
@@ -85,11 +98,18 @@ def login(request):
 
             if Donor.objects.filter(username=username).exists():
                 response = Response(
-                    {"message": "incorrect password, please try again.", }, status=HTTP_400_BAD_REQUEST)
+                    {
+
+                        "message": "Incorrect password, please try again.",
+                        "success": False
+                    }, status=HTTP_400_BAD_REQUEST)
 
             else:
                 response = Response(
-                    {"message": "please check your username"}, status=HTTP_400_BAD_REQUEST)
+                    {
+                        "message": "Kindly check your username",
+                        "success": False
+                    }, status=HTTP_400_BAD_REQUEST)
 
             return response
 
@@ -97,10 +117,38 @@ def login(request):
 
         serializer = sz.DonorLoginSerializer(donor, many=False)
         response = Response(
-            {"message": "login successful",
-             "donor": serializer.data})
-        response.reason_phrase = "Hello " + donor.username
+            {
+                "success": True,
+                "message": "login successful",
+                "donor": serializer.data})
 
         return response
     except Exception as e:
         return Response({"success": False, "message": str(e)})
+
+
+class UpdatePassword(GenericAPIView):
+    """
+    An endpoint for changing password.
+    """
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def put(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = PasswordSerializer(data=request.data)
+
+        if serializer.is_valid():
+            # Check old password
+            old_password = serializer.data.get("old_password")
+            if not self.object.check_password(old_password):
+                return Response({"old_password": ["Wrong password."]},
+                                status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
