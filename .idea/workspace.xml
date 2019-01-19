@@ -2,16 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e21d423-03d0-43e7-a124-506b8b1dde49" name="Default" comment="more changes">
-      <change afterPath="$PROJECT_DIR$/api_dbk/news/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api_dbk/news/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbk_web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbk_web.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_dbk/donors/donor_serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_dbk/donors/donor_serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_dbk/donors/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_dbk/donors/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_dbk/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_dbk/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api_dbk/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/api_dbk/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dbk_web/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/dbk_web/urls.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -59,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api_dbk/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="89" selection-start-line="89" selection-end-line="89" />
+            <state relative-caret-position="660">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -215,7 +208,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="87" />
-    <option name="y" value="29" />
+    <option name="y" value="6" />
     <option name="width" value="1513" />
     <option name="height" value="871" />
   </component>
@@ -225,6 +218,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -320,72 +314,6 @@
               <item name="dbk_web" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="dbk_web" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="api_dbk" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="api_dbk" type="462c0819:PsiDirectoryNode" />
-              <item name="donors" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="api_dbk" type="462c0819:PsiDirectoryNode" />
-              <item name="news" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="media" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="media_cdn" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="media_cdn" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="media_cdn" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="profiles" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dbk_web" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dbk_web" type="462c0819:PsiDirectoryNode" />
-              <item name="staticfiles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -488,6 +416,7 @@
       <workItem from="1545830728411" duration="882000" />
       <workItem from="1545833421460" duration="300000" />
       <workItem from="1546005949975" duration="3000" />
+      <workItem from="1547929906625" duration="683000" />
     </task>
     <task id="LOCAL-00001" summary="minor UI changes">
       <created>1515418397550</created>
@@ -507,12 +436,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35414000" />
+    <option name="totallyTimeSpent" value="36097000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="87" y="29" width="1513" height="871" extended-state="0" />
+    <frame x="87" y="6" width="1513" height="871" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2865895" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29027873" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -629,21 +559,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin/index.html" />
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/sites.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="262" lean-forward="true" selection-start-line="262" selection-end-line="262" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/sites.py" />
     <entry file="file://$PROJECT_DIR$/templates/admin/base_site.html" />
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/templates/admin/base_site.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" lean-forward="true" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/templates/admin/base_site.html" />
     <entry file="file://$PROJECT_DIR$/accounts/templates/dbk/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -651,13 +569,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/static/admin/css/dashboard.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/static/admin/css/dashboard.css" />
     <entry file="file://$PROJECT_DIR$/accounts/templates/admin/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -682,27 +594,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/templates/admin/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="88" selection-start-line="5" selection-start-column="88" selection-end-line="5" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/static/admin/css/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/static/admin/css/rtl.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/templates/admin/base.html" />
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/static/admin/css/base.css" />
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/django/contrib/admin/static/admin/css/rtl.css" />
     <entry file="file://$PROJECT_DIR$/accounts/static/css/adminextra.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -762,34 +656,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3420">
-          <caret line="236" selection-start-line="236" selection-end-line="236" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="108" column="46" lean-forward="true" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/serializers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="531" column="8" selection-start-line="531" selection-start-column="8" selection-end-line="531" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/decorators.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="121" column="19" selection-start-line="121" selection-start-column="19" selection-end-line="121" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/settings.py" />
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/views.py" />
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/serializers.py" />
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/decorators.py" />
     <entry file="file://$PROJECT_DIR$/api_dbk/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
@@ -814,13 +684,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/request.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2655">
-          <caret line="189" column="8" selection-start-line="189" selection-start-column="8" selection-end-line="189" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../lib/python3.5/site-packages/rest_framework/request.py" />
     <entry file="file://$PROJECT_DIR$/media_cdn/static/profiles/20171115_174253.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -901,8 +765,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api_dbk/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="89" selection-start-line="89" selection-end-line="89" />
+        <state relative-caret-position="660">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
