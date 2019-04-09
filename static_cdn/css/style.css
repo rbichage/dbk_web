@@ -1,0 +1,100 @@
+.jumbotron {
+    background-image: url("../img/landing.jpg");
+    background-color: #17234E;
+    margin-bottom: 0;
+    margin-top: 0px !important;
+    min-height: 100% !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    height: 550px ;
+    border-radius: 0px !important;
+
+
+}
+
+.css_selector {
+background: linear-gradient(
+                     rgba(20,20,20, .5),
+                     rgba(20,20,20, .5)),
+                     url('../img/background3.png');
+}
+
+
+
+.introduction {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    bottom: auto;
+    right: auto;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    text-align: center;
+    width: 100%;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+.login-panel {
+  margin-top: 25%;
+}
+
+
+.rowtrans{
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
+/*Addition css for home page*/
+.section-heading {
+  margin-bottom: 100px; }
+.section-heading h2 {
+    margin-top: 152px; }
+.section-heading p {
+    margin-bottom: 0; }
+
+
+table.dataTable tr.even {
+    background-color: white !important;
+}
+
+table.dataTable tr.odd {
+    background-color: #f5f5f5 !important;
+}
+
+table.dataTable tr.odd td.sorting_1 {
+    background-color: #f5f5f5 !important;
+}
+
+table.dataTable tr.even td.sorting_1 {
+    background-color: white !important;
+}
+
+.navbar-brand {
+    float: left;
+    height: 50px;
+    padding: 0px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+footer {
+  padding: 23px 0;
+  text-align: center;
+  color: #FFFFFF;
+  background-color: #5AC8FA; }
+  footer p {
+    font-size: 12px;
+    margin: 0; }
+  footer ul {
+    margin-bottom: 0; }
+    footer ul li a {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3); }
+      footer ul li a:hover, footer ul li a:focus, footer ul li a:active, footer ul li a.active {
+        text-decoration: none; }
+
+

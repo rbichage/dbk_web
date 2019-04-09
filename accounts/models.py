@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
 from django.db import models
+from django.utils import timezone as tz
 
 # Create your models here.
 from django.utils.datetime_safe import datetime
@@ -37,7 +38,6 @@ class News(models.Model):
 
 
 class County(models.Model):
-
     name = models.CharField(max_length=20, unique=True)
 
     def __str__(self):
@@ -80,12 +80,15 @@ class Donor(auth.models.User):
             return None
         return int((datetime.now().date() - self.birthdate).days / 365.25)
 
-    blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=40, default='choose', null=True, blank=True,)
-    date_donated = models.DateField(null=True, blank=True)
+    blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=40, default='choose', null=True, blank=True, )
+    date_donated = models.DateField(null=True, blank=True, auto_now=False)
     county_name = models.CharField(max_length=50, null=True, blank=True)
-    gender = models.CharField(null=True, blank=True, max_length=20,)
+    gender = models.CharField(null=True, blank=True, max_length=20, )
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     image = models.ImageField(upload_to='static/profiles', blank=True)
+    has_appointment = models.SmallIntegerField(null=True, blank=True)
+    schedule_date = models.DateField(auto_now=False, blank=True, null=True)
+    has_donated = models.BooleanField(null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -118,6 +121,7 @@ class Event(models.Model):
 
 
 class Appointment(models.Model):
+    username = models.CharField(max_length=50, blank=True, null=True)
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
@@ -127,7 +131,24 @@ class Appointment(models.Model):
                                  )
     phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
     county_name = models.ForeignKey(County, on_delete=models.CASCADE, null=True)
-    schedule_date = models.DateTimeField(auto_now=False, null=True)
+    hospital_name = models.CharField(max_length=140, null=True, blank=True)
+    schedule_date = models.DateField(auto_now=False, null=True)
+    has_donated = models.BooleanField(null=True, blank=True)
+    date_donated = models.DateField(null=True, auto_now=False)
+    amount_donated = models.SmallIntegerField(null=True, blank=True, help_text="mls")
 
     def __str__(self):
-        return self.first_name
+        return self.username
+
+    @property
+    def has_appointment(self):
+        return self.schedule_date > tz.now()
+
+    def save(self, **kwargs):
+        donor = Donor.objects.get(self.username)
+        donor.date_donated = self.date_donated
+        donor.has_appointment = self.has_appointment
+        donor.schedule_date = self.schedule_date
+        donor.has_donated = self.has_donated
+
+        return super(Appointment, self).save(**kwargs)

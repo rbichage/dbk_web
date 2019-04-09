@@ -37,6 +37,8 @@ ALLOWED_HOSTS = ['10.0.2.2',
 # Application definition
 
 INSTALLED_APPS = [
+    'jet.dashboard',
+    'jet',
     'api_dbk',
     'rest_framework',
     'rest_framework.authtoken',

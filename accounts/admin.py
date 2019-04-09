@@ -65,12 +65,10 @@ class DonorAdmin(admin.ModelAdmin):
         'id',
         'password',
         'last_login',
-        'is_superuser',
         'username',
         'first_name',
         'last_name',
         'email',
-        'is_staff',
         'is_active',
         'date_joined',
         'birthdate',
@@ -78,6 +76,9 @@ class DonorAdmin(admin.ModelAdmin):
         'county_name',
         'gender',
         'phone_number',
+        'schedule_date',
+        'has_appointment',
+        'has_donated',
     )
     # list_filter = (
     #     'last_login',
@@ -121,11 +122,26 @@ admin.site.register(News, NewsAdmin),
 
 class AppointmentAdmin(admin.ModelAdmin):
     list_display = (
+        'username',
         'first_name',
         'last_name',
         'county_name',
         'phone_number',
         'schedule_date',
+        'date_donated',
+        'has_donated',
+        'has_appointment',
+        'hospital_name',
+        'amount_donated',
+    )
+
+    readonly_fields = (
+        'county_name',
+        'schedule_date',
+        'hospital_name',
+        'county_name',
+        'phone_number',
+        'username'
     )
 
 

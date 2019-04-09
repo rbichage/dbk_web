@@ -1,0 +1,10 @@
+#header
+{ background-color: #7c0011;
+    border-bottom: solid 1px #060099;
+}
+
+#branding
+h1 { color: #fff;
+}
+.module h2, .module caption, .inline-group h2 { background: #7c000b bottom left repeat-x; color: #ffffff; }
+a.section:link, a.section:visited { color: #fff; }
