@@ -52,18 +52,15 @@ class HospitalList(generics.ListAPIView):
     serializer_class = HospitalSerializer
 
 
-class CountyHospitalsList(APIView):
+class CountyHospitalsList(generics.ListCreateAPIView):
+    serializer_class = HospitalSerializer
 
-    @staticmethod
-    def get(request):
-        county_name = Hospital.objects.filter(county_name="Nairobi")
-        county_hospitals = HospitalSerializer(data=request.data)
-        response = Response({
-            "county": county_name,
-            "hospitals": county_hospitals.data
-        })
-
-        return response
+    def get_queryset(self):
+        queryset = Hospital.objects.all()
+        county_name = self.request.query_params.get('county_name', None)
+        if county_name is not None:
+            queryset = queryset.filter(county_name=county_name)
+        return queryset
 
 
 # update user profile

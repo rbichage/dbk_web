@@ -117,7 +117,8 @@ class DonorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donor
         fields = ('id', 'username', 'email', 'first_name', 'token', 'gender',
-                  'last_name', 'birthdate', 'county_name', 'age', 'phone_number', 'blood_group', 'date_donated',
+                  'last_name', 'birthdate', 'county_name', 'age', 'has_appointment', 'phone_number', 'blood_group',
+                  'date_donated',
                   'image')
         read_only_fields = ('id', 'token')
 

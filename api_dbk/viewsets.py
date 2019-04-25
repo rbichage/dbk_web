@@ -2,14 +2,15 @@ from rest_framework import viewsets, permissions
 from accounts.models import Donor, County, Hospital, Event, Appointment
 from api_dbk.appointments.serializers import AppointmentSerializer
 from api_dbk.counties.serializers import CountySerializer
+from api_dbk.donors.donor_serializers import DonorSerializer
 from api_dbk.events.serializers import EventSerializer
 from api_dbk.hospitals.serializers import HospitalSerializer
 
 
-# class DonorViewSet(viewsets.ModelViewSet):
-#     queryset = Donor.objects.all()
-#     serializer_class = DonorSerializer
-#     http_method_names = ['post', 'head', 'get']
+class DonorViewSet(viewsets.ModelViewSet):
+    queryset = Donor.objects.all()
+    serializer_class = DonorSerializer
+    http_method_names = ['post', 'head', 'get']
 
 
 class CountyViewSet(viewsets.ModelViewSet):
@@ -25,6 +26,8 @@ class HospitalViewSet(viewsets.ModelViewSet):
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
 
 
 

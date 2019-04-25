@@ -29,9 +29,8 @@ urlpatterns = [
     url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^api/v1/', include('djoser.urls')),
     url(r'^api/v1/', include('api_dbk.urls')),
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^$', views.home, name='home'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

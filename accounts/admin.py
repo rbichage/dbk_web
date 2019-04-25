@@ -1,22 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from accounts.models import Donor, Hospital, County, Event, News, Appointment
-
-
-class DonorAdmin(admin.ModelAdmin):
-    list_display = ('username',
-                    'first_name',
-                    'last_name',
-                    'birthdate',
-                    'age',
-                    'date_donated',
-                    'county_name',
-
-                    )
-
-
-admin.site.register(Donor, DonorAdmin),
+from accounts.models import Donor, Hospital, County, Event, News, Appointment, Donation
 
 
 class HospitalAdmin(admin.ModelAdmin):
@@ -51,8 +36,9 @@ class EventAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Event, EventAdmin)
+
+
 # vim: set fileencoding=utf-8 :
-from django.contrib import admin
 
 
 class CountyAdmin(admin.ModelAdmin):
@@ -60,39 +46,39 @@ class CountyAdmin(admin.ModelAdmin):
     # search_fields = ('name',)
 
 
-class DonorAdmin(admin.ModelAdmin):
-    list_display = (
-        'id',
-        'password',
-        'last_login',
-        'username',
-        'first_name',
-        'last_name',
-        'email',
-        'is_active',
-        'date_joined',
-        'birthdate',
-        'blood_group',
-        'county_name',
-        'gender',
-        'phone_number',
-        'schedule_date',
-        'has_appointment',
-        'has_donated',
-    )
-    # list_filter = (
-    #     'last_login',
-    #     'is_superuser',
-    #     'is_staff',
-    #     'is_active',
-    #     'date_joined',
-    #     'birthdate',
-    #     'county_name',
-    # )
+# class DonorAdmin(admin.ModelAdmin):
+#     list_display = (
+#         'id',
+#         'password',
+#         'last_login',
+#         'username',
+#         'first_name',
+#         'last_name',
+#         'email',
+#         'is_active',
+#         'date_joined',
+#         'birthdate',
+#         'blood_group',
+#         'county_name',
+#         'gender',
+#         'phone_number',
+#         'schedule_date',
+#         'has_appointment',
+#         'has_donated',
+#     )
+#     # list_filter = (
+#     #     'last_login',
+#     #     'is_superuser',
+#     #     'is_staff',
+#     #     'is_active',
+#     #     'date_joined',
+#     #     'birthdate',
+#     #     'county_name',
+#     # )
 
 
 class HospitalAdmin(admin.ModelAdmin):
-    list_display = ('id', 'hospital_name', 'county_name', 'phone_number')
+    list_display = ('hospital_name', 'county_name', 'phone_number')
     # list_filter = ('county_name',)
 
 
@@ -136,13 +122,112 @@ class AppointmentAdmin(admin.ModelAdmin):
     )
 
     readonly_fields = (
+        'username',
         'county_name',
         'schedule_date',
         'hospital_name',
         'county_name',
         'phone_number',
-        'username'
+    )
+
+    fields = (
+        'donor',
+        'first_name',
+        'last_name',
+        'county_name',
+        'phone_number',
+        'schedule_date',
+        'date_donated',
+        'has_donated',
+        'hospital_name',
+        'amount_donated',
+    )
+
+    list_filter = (
+        'hospital_name',
+        'county_name',
+        'date_donated',
     )
 
 
-admin.site.register(Appointment, AppointmentAdmin),
+admin.site.register(Appointment, AppointmentAdmin)
+
+
+class DonationAdmin(admin.ModelAdmin):
+    list_display = (
+        'donor',
+        'date_donated',
+        'has_donated',
+        'hospital_name',
+        'county_name',
+
+    )
+    fields = (
+        'donor',
+        'date_donated',
+        'has_donated',
+        'hospital_name',
+        'county_name',
+    )
+
+    list_filter = (
+        'donor',
+        'county_name',
+        'hospital_name',
+    )
+
+    search_fields = (
+        'donor',
+        'hospital_name',
+        'county_name',
+    )
+
+
+admin.site.register(Donation, DonationAdmin)
+
+
+class DonationsTabular(admin.TabularInline):
+    model = Donation
+    readonly_fields = ('donor',
+                       'date_donated',
+                       'has_donated',
+                       )
+    fields = ('donor',
+              'date_donated',
+              'has_donated',)
+    extra = 0
+
+
+class AppointmentTabular(admin.TabularInline):
+    model = Appointment
+    readonly_fields = ('schedule_date', 'hospital_name', 'county_name', 'amount_donated', 'times_donated')
+
+    fields = ('schedule_date', 'hospital_name', 'county_name', 'amount_donated', 'times_donated')
+    extra = 0
+
+
+class DonorAdmin(admin.ModelAdmin):
+    inlines = (AppointmentTabular, DonationsTabular,)
+    list_display = (
+        'username',
+        'first_name',
+        'last_name',
+        'birthdate',
+        'age',
+        'county_name',
+        'gender'
+
+    )
+
+    fields = (
+        'username',
+        'first_name',
+        'last_name',
+        'birthdate',
+        'county_name',
+        'gender'
+
+    )
+
+
+admin.site.register(Donor, DonorAdmin),

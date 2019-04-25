@@ -7,6 +7,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
         model = Appointment
         fields = (
             'id',
+            'donor',
             'first_name',
             'last_name',
             'county_name',
@@ -19,6 +20,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
         @staticmethod
         def create(self, validated_data):
             appointment = Appointment(
+                donor = validated_data['username'],
                 first_name=validated_data['first_name'],
                 last_name=validated_data['last_name'],
                 county_name=validated_data['county_name'],

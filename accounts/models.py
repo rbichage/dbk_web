@@ -1,8 +1,6 @@
-from datetime import date, timezone
-
 from django.contrib import auth
 from django.contrib.auth.models import User
-from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils import timezone as tz
 
@@ -81,14 +79,16 @@ class Donor(auth.models.User):
         return int((datetime.now().date() - self.birthdate).days / 365.25)
 
     blood_group = models.CharField(choices=BLOOD_CHOICES, max_length=40, default='choose', null=True, blank=True, )
-    date_donated = models.DateField(null=True, blank=True, auto_now=False)
+    date_donated = models.DateField(null=True, blank=True, )
     county_name = models.CharField(max_length=50, null=True, blank=True)
     gender = models.CharField(null=True, blank=True, max_length=20, )
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     image = models.ImageField(upload_to='static/profiles', blank=True)
-    has_appointment = models.SmallIntegerField(null=True, blank=True)
-    schedule_date = models.DateField(auto_now=False, blank=True, null=True)
+    has_appointment = models.BooleanField(default=False)
+    schedule_date = models.DateField(blank=True, null=True)
     has_donated = models.BooleanField(null=True, blank=True)
+    amount_donated = models.SmallIntegerField(null=True, blank=True, help_text='mls')
+    times_donated = models.SmallIntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -99,7 +99,7 @@ class Donor(auth.models.User):
 
 class Hospital(models.Model):
     hospital_name = models.CharField(max_length=100)
-    county_name = models.ForeignKey(County, on_delete=models.CASCADE)
+    county_name = models.CharField(max_length=100, null=True, blank=True)
     phone_number = models.CharField(max_length=15, null=True)
 
     def __str__(self):
@@ -121,7 +121,7 @@ class Event(models.Model):
 
 
 class Appointment(models.Model):
-    username = models.CharField(max_length=50, blank=True, null=True)
+    donor = models.ForeignKey(Donor, related_name='appointment', null=True, blank=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
@@ -130,25 +130,53 @@ class Appointment(models.Model):
                                  "allowed. "
                                  )
     phone_number = models.CharField(validators=[phone_regex], max_length=15, blank=True, null=True)
-    county_name = models.ForeignKey(County, on_delete=models.CASCADE, null=True)
+    county_name = models.CharField(max_length=50, null=True, blank=True)
     hospital_name = models.CharField(max_length=140, null=True, blank=True)
     schedule_date = models.DateField(auto_now=False, null=True)
     has_donated = models.BooleanField(null=True, blank=True)
     date_donated = models.DateField(null=True, auto_now=False)
     amount_donated = models.SmallIntegerField(null=True, blank=True, help_text="mls")
+    times_donated = models.SmallIntegerField(null=True, blank=True)
 
     def __str__(self):
-        return self.username
+        return str(self.donor.username)
 
     @property
     def has_appointment(self):
-        return self.schedule_date > tz.now()
+        return self.schedule_date > tz.now().date()
 
-    def save(self, **kwargs):
-        donor = Donor.objects.get(self.username)
+    @property
+    def username(self):
+        return self.donor.username
+
+    def save(self, *args, **kwargs):
+        donor = Donor.objects.get(username=self.donor)
         donor.date_donated = self.date_donated
         donor.has_appointment = self.has_appointment
         donor.schedule_date = self.schedule_date
         donor.has_donated = self.has_donated
+        donor.amount_donated = self.amount_donated
 
-        return super(Appointment, self).save(**kwargs)
+        donor.save()
+        super(Appointment, self).save(*args, **kwargs)
+
+
+class Donation(models.Model):
+    donor = models.ForeignKey(Donor, null=True, blank=True, on_delete=models.CASCADE)
+    date_donated = models.DateField(auto_now=False)
+    has_donated = models.BooleanField(default=False)
+    hospital_name = models.CharField(null=True, blank=True, max_length=100)
+    county_name = models.CharField(null=True, blank=True, max_length=100)
+
+    @property
+    def username(self):
+        return self.donor.username
+
+    def save(self, *args, **kwargs):
+        appointment = Appointment.objects.get(donor=self.donor)
+        appointment.has_donated = self.has_donated
+        appointment.date_donated = self.date_donated
+        appointment.hospital_name = self.hospital_name
+        appointment.county_name = self.county_name
+        appointment.save()
+        super(Donation, self).save(*args, **kwargs)
