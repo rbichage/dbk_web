@@ -31,7 +31,8 @@ ALLOWED_HOSTS = ['10.0.2.2',
                  '128.10.1.131',
                  '10.42.0.1',
                  'dbke.herokuapp.com',
-                 '192.168.43.65'
+                 '192.168.43.65',
+                 '192.168.137.173',
                  ]
 
 # Application definition
@@ -167,3 +168,10 @@ REST_FRAMEWORK = {
 
 }
 LOGIN_REDIRECT_URL = '/accounts/'
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {},
+}

@@ -18,7 +18,7 @@ class AppointmentSerializer(serializers.ModelSerializer):
         )
 
         @staticmethod
-        def create(self, validated_data):
+        def create(validated_data):
             appointment = Appointment(
                 donor = validated_data['username'],
                 first_name=validated_data['first_name'],

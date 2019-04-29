@@ -30,17 +30,23 @@ class CountySerializer(serializers.ModelSerializer):
 
 
 class NewsSerializer(serializers.ModelSerializer):
+    title = serializers.CharField(max_length=100, help_text='max. of One hundred characters')
+    description = serializers.CharField(max_length=4000, allow_null=True)
+    created_at = serializers.DateField(allow_null=True)
+    image_url = serializers.ImageField(allow_null=True)
+
     class Meta:
         model = News
-        fields = ('id', 'title', 'description',
-                  'updated_at', 'created_at')
+        fields = ('id', 'title', 'description', 'image_url',
+                  'created_at')
 
-        read_only_fields = ('updated_at', 'created_at')
+        read_only_fields = ('created_at',)
 
     def create(self, validated_data):
         news = News(
             title=validated_data['title'],
             description=validated_data['description'],
+            image_url=validated_data['image_url'],
         )
         news.save()
         return news
@@ -48,6 +54,7 @@ class NewsSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         instance.title = validated_data.get('title', instance.title)
         instance.description = validated_data.get('description', instance.description)
+        instance.image_url = validated_data.get('image_url', instance.image_url)
         instance.save()
         return instance
 

@@ -1,13 +1,17 @@
 import sys
 
+from django.contrib.auth import get_user_model
 from django.http import Http404
 from rest_framework import generics, permissions
+from rest_framework.decorators import api_view
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from accounts.models import Donor, County, News, Appointment, Hospital
+from accounts.models import Donor, County, News, Appointment, Hospital, Donation
 from api_dbk.appointments.serializers import AppointmentSerializer
 from api_dbk.counties.serializers import CountySerializer, NewsSerializer, HospitalSerializer
+from api_dbk.donations.serializers import DonationSerializer
 from api_dbk.donors.donor_serializers import DonorProfileSerializer
 
 
@@ -17,7 +21,7 @@ class CountyList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
 
-class NewsList(generics.ListAPIView):
+class NewsList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     queryset = News.objects.all()
     serializer_class = NewsSerializer
@@ -32,7 +36,7 @@ class NewsDetails(generics.RetrieveUpdateDestroyAPIView):
 class DonorProfileList(generics.ListCreateAPIView):
     queryset = Donor.objects.all()
     serializer_class = DonorProfileSerializer
-    permission_classes = ()
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class AppointmentList(generics.ListCreateAPIView):
@@ -50,23 +54,24 @@ class AppointmentDetails(generics.RetrieveUpdateDestroyAPIView):
 class HospitalList(generics.ListAPIView):
     queryset = Hospital.objects.all()
     serializer_class = HospitalSerializer
+    search_fields = 'county_name'
 
 
 class CountyHospitalsList(generics.ListCreateAPIView):
     serializer_class = HospitalSerializer
+    queryset = Hospital.objects.all()
+    search_fields = ('county_name',)
 
-    def get_queryset(self):
-        queryset = Hospital.objects.all()
-        county_name = self.request.query_params.get('county_name', None)
-        if county_name is not None:
-            queryset = queryset.filter(county_name=county_name)
-        return queryset
+
+class DonationsSerializer(ListAPIView):
+    queryset = Donation.objects.all()
+    serializer_class = DonationSerializer
 
 
 # update user profile
 
 
-class DonorProfileDetails(APIView):
+class DonorProfileDetails(generics.ListCreateAPIView):
     @staticmethod
     def get_object(pk):
         try:
@@ -79,6 +84,7 @@ class DonorProfileDetails(APIView):
         serializer = DonorProfileSerializer(donor)
         return Response(request, serializer.data)
 
+    @api_view(["PUT"])
     def put(self, request, pk):
         try:
             donor = self.get_object(pk)

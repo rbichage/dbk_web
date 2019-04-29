@@ -35,7 +35,8 @@ class DonorProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donor
         fields = (
-            'id', 'username', 'first_name', 'last_name', 'email', 'gender', 'county_name', 'age', 'blood_group', 'phone_number',
+            'id', 'username', 'first_name', 'last_name', 'email', 'gender', 'county_name', 'age', 'blood_group',
+            'phone_number',
             'birthdate', 'image')
 
         read_only_fields = ('updated_at', 'created_at')
@@ -111,7 +112,7 @@ class SignUpSerializer(serializers.ModelSerializer):
         return instance
 
 
-class DonorSerializer(serializers.ModelSerializer):
+class DonorSerializer(DonorProfileSerializer):
     token = serializers.SerializerMethodField()
 
     class Meta:

@@ -98,8 +98,8 @@ class EventAdmin(admin.ModelAdmin):
 class NewsAdmin(admin.ModelAdmin):
     list_display = (
         'title',
-        'description',
-        'created_at'
+        'created_at',
+        'image_url',
     )
 
 
@@ -160,6 +160,7 @@ class DonationAdmin(admin.ModelAdmin):
         'has_donated',
         'hospital_name',
         'county_name',
+        'amount_donated'
 
     )
     fields = (
@@ -168,6 +169,7 @@ class DonationAdmin(admin.ModelAdmin):
         'has_donated',
         'hospital_name',
         'county_name',
+        'amount_donated',
     )
 
     list_filter = (

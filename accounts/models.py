@@ -15,13 +15,8 @@ def upload_location(instance, filename):
 class News(models.Model):
     title = models.CharField(max_length=100, help_text='max. of One hundred characters')
     description = models.TextField(null=True)
-    # image_url = models.ImageField(
-    #     upload_to=upload_location,
-    #     null=True, blank=True,
-    #     width_field="width_field",
-    #     height_field="height_field")
-    updated_at = models.DateTimeField(auto_now=True)
-    created_at = models.DateTimeField(auto_now=True, null=True)
+    created_at = models.DateField(auto_now=True, null=True,)
+    image_url = models.ImageField(upload_to='static/news', null=True, blank=True)
 
     class Meta:
         verbose_name_plural = "News"
@@ -167,16 +162,22 @@ class Donation(models.Model):
     has_donated = models.BooleanField(default=False)
     hospital_name = models.CharField(null=True, blank=True, max_length=100)
     county_name = models.CharField(null=True, blank=True, max_length=100)
+    amount_donated = models.PositiveSmallIntegerField(null=True, blank=True, help_text="in mls",)
 
     @property
     def username(self):
         return self.donor.username
 
     def save(self, *args, **kwargs):
+
         appointment = Appointment.objects.get(donor=self.donor)
-        appointment.has_donated = self.has_donated
-        appointment.date_donated = self.date_donated
-        appointment.hospital_name = self.hospital_name
-        appointment.county_name = self.county_name
-        appointment.save()
-        super(Donation, self).save(*args, **kwargs)
+
+        if Appointment.objects.all().exists():
+
+            appointment.has_donated = self.has_donated
+            appointment.date_donated = self.date_donated
+            appointment.hospital_name = self.hospital_name
+            appointment.county_name = self.county_name
+            appointment.save()
+            super(Donation, self).save(*args, **kwargs)
+        pass

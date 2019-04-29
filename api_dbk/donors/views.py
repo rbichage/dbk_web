@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import permissions, status
 from rest_framework.compat import authenticate
 from rest_framework.compat import authenticate
@@ -77,17 +78,6 @@ class SignUpView(APIView):
 @permission_classes((IsAuthenticated,))
 @parser_classes((JSONParser, FormParser, MultiPartParser))
 def login(request):
-    # serializer = sz.LoginSerializer(
-    #     data=request.data, context={'request': request}
-    # )
-    # if not serializer.is_valid():
-    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    # user = get_object_or_404(Donor, username=serializer.validated_data['username'])
-    # if not user.check_password(serializer.validated_data['password']):
-    #     return Response({'error': 'Incorrect username or password'}, status=status.HTTP_400_BAD_REQUEST)
-    # serializer = sz.DonorLoginSerializer(user)
-    # return Response(serializer.data)
-
     try:
 
         username = request.data.get("username")
@@ -127,28 +117,34 @@ def login(request):
         return Response({"success": False, "message": str(e)})
 
 
-class UpdatePassword(GenericAPIView):
-    """
-    An endpoint for changing password.
-    """
+class UpdatePassword(APIView):
+    serializer_class = PasswordSerializer
+    model = User
     permission_classes = (permissions.IsAuthenticated,)
+    http_method_names = ['put', 'post']
 
-    def get_object(self, queryset=None):
-        return self.request.user
 
-    def put(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        serializer = PasswordSerializer(data=request.data)
+def get_object(self):
+    return self.request.user
 
-        if serializer.is_valid():
-            # Check old password
-            old_password = serializer.data.get("old_password")
-            if not self.object.check_password(old_password):
-                return Response({"old_password": ["Wrong password."]},
-                                status=status.HTTP_400_BAD_REQUEST)
-            # set_password also hashes the password that the user will get
-            self.object.set_password(serializer.data.get("new_password"))
-            self.object.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
 
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+@api_view(["POST"])
+@permission_classes((IsAuthenticated,))
+@parser_classes((JSONParser, FormParser, MultiPartParser))
+def put(self, request, *args, **kwargs):
+    self.object = self.get_object()
+    serializer = self.get_serializer(data=request.data)
+
+    if serializer.is_valid():
+        if not self.object.check_password(serializer.data.get("old_password")):
+            return Response({
+                "old_password": "wrong password"
+            }, 400)
+
+        self.object.set_password(serializer.data.get("new_password"))
+        self.object.save()
+        return Response({
+            "success": "password saved successfully"
+        }, 200)
+
+    return Response(serializer.errors, 400)
