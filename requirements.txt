@@ -30,7 +30,7 @@ django-templated-mail==1.0.0
 django-tinymce==2.6.0
 django-utils2==2.5.0
 django-widget-tweaks==1.4.2
-djangorestframework==3.7.1
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 djet==0.2.1
 djoser==1.0.1
